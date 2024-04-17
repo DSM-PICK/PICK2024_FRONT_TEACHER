@@ -1,11 +1,60 @@
 "use client";
-import Header from "@/components/header";
+import { Application, EarlyReturn } from "@/api/outList";
+import { applicationOK, earlyReturnHome } from "@/api/type";
+import BackGround from "@/components/background";
+import NonReturn from "@/components/list/application";
+import { getFullToday } from "@/util/date";
+import { getStudentString } from "@/util/util";
+import React, { useEffect, useState } from "react";
 
 const OutList = () => {
+  const [selectedTab, setSelectedTab] = useState<boolean>(true);
+  const [applicationData, setApplicationData] = useState<applicationOK[]>();
+  const [earlyData, setEarlyData] = useState<earlyReturnHome[]>();
+
+  const { data: applicationOKData } = Application();
+  const { data: earlyReturnData } = EarlyReturn();
+
+  useEffect(() => {
+    setApplicationData(applicationOKData);
+  }, [applicationOKData]);
+
+  useEffect(() => {
+    setEarlyData(earlyReturnData);
+  }, [earlyReturnData]);
+
+  const onClickTab = (tab: boolean) => {
+    setSelectedTab(tab);
+  };
+
   return (
-    <div className=" h-dvh px-6 py-3 bg-primary-1200">
-      <Header />
-    </div>
+    <BackGround
+      title="외출자보기"
+      subTitle={getFullToday()}
+      TabOK={true}
+      TabOnclick={onClickTab}
+    >
+      <div className=" overflow-y-scroll gap-4 flex flex-col">
+        {selectedTab
+          ? applicationData?.map((item, index) => (
+              <NonReturn
+                id={item.id}
+                type="application"
+                key={index}
+                returnTime={item.end_time}
+                name={getStudentString(item)}
+              />
+            ))
+          : earlyData?.map((item, index) => (
+              <NonReturn
+                id={item.id}
+                key={index}
+                name={getStudentString(item)}
+                type="early-return"
+              />
+            ))}
+      </div>
+    </BackGround>
   );
 };
 

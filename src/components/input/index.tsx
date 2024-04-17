@@ -45,7 +45,7 @@ const Input: React.FC<InputProps> = ({
         ? "border-error-500 bg-error-900"
         : disabled
         ? "bg-neutral-800 border-neutral-800"
-        : "bg-neutral-900 hover:border-neutral-500 hover:bg-white active:border-secondary-500 caret-primary-500 focus:border-secondary-500"
+        : "bg-neutral-900 active:border-secondary-500 caret-primary-500 focus:border-secondary-500"
     }
     `;
 

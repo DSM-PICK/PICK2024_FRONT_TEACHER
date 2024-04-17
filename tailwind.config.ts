@@ -299,6 +299,7 @@ const config: Config = {
         "29": "7.25rem",
         "25": "6.25rem",
         "27%": "27%",
+        "18": "4.375rem",
       },
       height: {
         "140": "36.625rem",
@@ -328,7 +329,7 @@ const config: Config = {
         30: "7.4rem",
         23: "5.75rem",
         25: "6.25rem",
-        "%": "20%",
+        "%": "48%",
       },
       borderRadius: {
         max: "3.75rem",

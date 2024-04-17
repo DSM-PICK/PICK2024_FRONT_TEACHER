@@ -24,9 +24,9 @@ const Header: NextPage = ({}) => {
   return (
     <div className="flex justify-between items-center py-1 ">
       <Link href={"/main"}>
-        <Image src={pick} alt="" width={42} />
+        <Image src={pick} alt="" width={48} />
       </Link>
-      <div className="flex font-sans text-nowrap text-sub-title4-M text-neutral-50">
+      <div className="flex font-sans text-nowrap text-sub-title4-M  text-neutral-50">
         {teacherName ? `${teacherName}선생님` : "선생님"}
       </div>
     </div>
