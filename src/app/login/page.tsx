@@ -18,7 +18,7 @@ interface LoginType {
   password: string;
 }
 
-const Main = () => {
+const Login = () => {
   const [data, setData] = useState<LoginType>({
     admin_id: "",
     password: "",
@@ -108,4 +108,4 @@ const Main = () => {
   );
 };
 
-export default Main;
+export default Login;
