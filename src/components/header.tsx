@@ -22,7 +22,7 @@ const Header: NextPage = ({}) => {
   }
 
   return (
-    <div className="flex justify-between items-center py-1">
+    <div className="flex justify-between items-center py-1 ">
       <Link href={"/main"}>
         <Image src={pick} alt="" width={42} />
       </Link>
