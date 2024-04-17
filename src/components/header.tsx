@@ -3,11 +3,10 @@ import { NextPage } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
-import pick from "@/assets/img/Icon/pickname.svg";
+import pick from "@/assets/PiCKLogo.svg";
 import { useRouter } from "next/navigation";
 
 const Header: NextPage = ({}) => {
-  const [easterUrl, setEasetUrl] = useState<string>("/main");
   const [teacherName, setTeacherName] = useState<string | null>(null);
   const router = useRouter();
 
@@ -23,11 +22,11 @@ const Header: NextPage = ({}) => {
   }
 
   return (
-    <div className="flex px-70 justify-between items-center bg-white py-2">
-      <Link href={easterUrl}>
-        <Image src={pick} alt="" width={96} height={52} />
+    <div className="flex justify-between items-center py-1">
+      <Link href={"/main"}>
+        <Image src={pick} alt="" width={42} />
       </Link>
-      <div className="flex font-sans text-nowrap w-36 text-heading6-M text-neutral-50">
+      <div className="flex font-sans text-nowrap text-sub-title4-M text-neutral-50">
         {teacherName ? `${teacherName}선생님` : "선생님"}
       </div>
     </div>

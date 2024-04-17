@@ -66,31 +66,33 @@ const Main = () => {
     } else return "primary";
   };
   return (
-    <div className=" flex flex-col p-6 h-dvh justify-center gap-7">
-      <div>
-        <Image src={Logo} alt="" />
-        <div className=" text-body2 text-neutral-400">
-          구글폼에 제출했던 계정으로 로그인해주세요
+    <div className=" flex flex-col py-20 px-6 pt-44 h-dvh justify-between">
+      <div className="flex flex-col gap-7">
+        <div>
+          <Image src={Logo} alt="" width={120} />
+          <div className=" text-body2 text-neutral-400">
+            구글폼에 제출했던 계정으로 로그인해주세요
+          </div>
         </div>
+        <Input
+          type="text"
+          placeholder="아이디"
+          width="full"
+          onChange={handleChange}
+          value={data.admin_id}
+          onKeyDown={handleKeyDown}
+          name="admin_id"
+        />
+        <Input
+          type="password"
+          width="full"
+          placeholder="비밀번호"
+          onChange={handleChange}
+          onKeyDown={handleKeyDown}
+          name="password"
+          value={data.password}
+        />
       </div>
-      <Input
-        type="text"
-        placeholder="아이디"
-        width="full"
-        onChange={handleChange}
-        value={data.admin_id}
-        onKeyDown={handleKeyDown}
-        name="admin_id"
-      />
-      <Input
-        type="password"
-        width="full"
-        placeholder="비밀번호"
-        onChange={handleChange}
-        onKeyDown={handleKeyDown}
-        name="password"
-        value={data.password}
-      />
       <Button
         colorType={`${BtnColor()}`}
         buttonSize="full"
