@@ -66,40 +66,44 @@ const Main = () => {
     } else return "primary";
   };
   return (
-    <div className=" flex flex-col py-20 px-6 pt-44 h-dvh justify-between">
-      <div className="flex flex-col gap-7">
-        <div>
-          <Image src={Logo} alt="" width={120} />
-          <div className=" text-body2 text-neutral-400">
-            구글폼에 제출했던 계정으로 로그인해주세요
+    <div className=" flex flex-col px-6 h-dvh justify-center pt-% pb-20">
+      <div className=" flex flex-col justify-between h-90dvh gap-5">
+        <div className="flex flex-col gap-7">
+          <div>
+            <Image src={Logo} alt="" width={120} />
+            <div className=" text-body2 text-neutral-400">
+              구글폼에 제출했던 계정으로 로그인해주세요
+            </div>
           </div>
+          <Input
+            type="text"
+            placeholder="아이디"
+            width="full"
+            onChange={handleChange}
+            value={data.admin_id}
+            onKeyDown={handleKeyDown}
+            name="admin_id"
+          />
+          <Input
+            type="password"
+            width="full"
+            placeholder="비밀번호"
+            onChange={handleChange}
+            onKeyDown={handleKeyDown}
+            name="password"
+            value={data.password}
+          />
         </div>
-        <Input
-          type="text"
-          placeholder="아이디"
-          width="full"
-          onChange={handleChange}
-          value={data.admin_id}
-          onKeyDown={handleKeyDown}
-          name="admin_id"
-        />
-        <Input
-          type="password"
-          width="full"
-          placeholder="비밀번호"
-          onChange={handleChange}
-          onKeyDown={handleKeyDown}
-          name="password"
-          value={data.password}
-        />
+        <div className=" h-fit">
+          <Button
+            colorType={`${BtnColor()}`}
+            buttonSize="full"
+            onClick={onClickBtn}
+          >
+            로그인
+          </Button>
+        </div>
       </div>
-      <Button
-        colorType={`${BtnColor()}`}
-        buttonSize="full"
-        onClick={onClickBtn}
-      >
-        로그인
-      </Button>
     </div>
   );
 };
