@@ -66,7 +66,7 @@ const Login = () => {
     } else return "primary";
   };
   return (
-    <div className=" flex flex-col px-6 h-dvh justify-center pt-% pb-20">
+    <div className=" flex flex-col px-6 h-dvh justify-center pt-48 pb-20">
       <div className=" flex flex-col justify-between h-90dvh gap-5">
         <div className="flex flex-col gap-7">
           <div>
