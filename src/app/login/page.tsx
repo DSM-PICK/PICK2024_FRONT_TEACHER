@@ -18,7 +18,7 @@ interface LoginType {
   password: string;
 }
 
-const Main = () => {
+const Login = () => {
   const [data, setData] = useState<LoginType>({
     admin_id: "",
     password: "",
@@ -75,35 +75,37 @@ const Main = () => {
               구글폼에 제출했던 계정으로 로그인해주세요
             </div>
           </div>
+          <Input
+            type="text"
+            placeholder="아이디"
+            width="full"
+            onChange={handleChange}
+            value={data.admin_id}
+            onKeyDown={handleKeyDown}
+            name="admin_id"
+          />
+          <Input
+            type="password"
+            width="full"
+            placeholder="비밀번호"
+            onChange={handleChange}
+            onKeyDown={handleKeyDown}
+            name="password"
+            value={data.password}
+          />
         </div>
-        <Input
-          type="text"
-          placeholder="아이디"
-          width="full"
-          onChange={handleChange}
-          value={data.admin_id}
-          onKeyDown={handleKeyDown}
-          name="admin_id"
-        />
-        <Input
-          type="password"
-          width="full"
-          placeholder="비밀번호"
-          onChange={handleChange}
-          onKeyDown={handleKeyDown}
-          name="password"
-          value={data.password}
-        />
+        <div className=" h-fit">
+          <Button
+            colorType={`${BtnColor()}`}
+            buttonSize="full"
+            onClick={onClickBtn}
+          >
+            로그인
+          </Button>
+        </div>
       </div>
-      <Button
-        colorType={`${BtnColor()}`}
-        buttonSize="full"
-        onClick={onClickBtn}
-      >
-        로그인
-      </Button>
     </div>
   );
 };
 
-export default Main;
+export default Login;
