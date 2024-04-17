@@ -34,16 +34,16 @@ const Button: React.FC<ButtonProp> = ({
   const getColorClass = () => {
     switch (colorType) {
       case "primary":
-        return " rounded-lg bg-primary-200 text-primary-1000 hover:bg-primary-500 focus:bg-primary-500 focus:border focus:border-primary-800 active:bg-primary-800";
+        return " rounded-lg bg-primary-200 text-primary-1000 focus:bg-primary-500 focus:border focus:border-primary-800 active:bg-primary-800";
 
       case "secondary":
-        return " rounded-lg bg-secondary-200 text-secondary-1000 hover:bg-secondary-500 focus:bg-secondary-500 focus:border focus:border-secondary-800 active:bg-secondary-800";
+        return " rounded-lg bg-secondary-200 text-secondary-1000  focus:bg-secondary-500 focus:border focus:border-secondary-800 active:bg-secondary-800";
 
       case "tertiary":
-        return " rounded-lg bg-tertiary-200 text-tertiary-900 hover:bg-tertiary-500 focus:bg-tertiary-500 focus:border focus:border-tertiary-800 active:bg-tertiary-800";
+        return " rounded-lg bg-tertiary-200 text-tertiary-900 focus:bg-tertiary-500 focus:border focus:border-tertiary-800 active:bg-tertiary-800";
 
       case "ghost":
-        return " rounded-lg border bg-primary-1000 border-primary-200 hover:border-primary-500 hover:text-primary-500 focus:border-primary-800 focus:text-primary-500 active:border-primary-800 active:text-primary-800";
+        return " rounded-lg border bg-primary-1000 border-primary-200 focus:border-primary-800 focus:text-primary-500 active:border-primary-800 active:text-primary-800";
 
       case "solidDisabled":
         return " rounded-lg bg-neutral-600 text-primary-1000";
@@ -52,7 +52,7 @@ const Button: React.FC<ButtonProp> = ({
         return " rounded-lg border border-neutral-500 text-neutral-500 bg-neutral-1000";
 
       case "red":
-        return " rounded-lg text-error-1000 bg-error-200 hover:bg-error-400 focus:bg-error-400 focus:border focus:border-error-800 active:bg-error-700";
+        return " rounded-lg text-error-1000 bg-error-200 focus:bg-error-400 focus:border focus:border-error-800 active:bg-error-700";
     }
   };
 
