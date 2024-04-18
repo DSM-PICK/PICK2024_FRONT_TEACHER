@@ -1,13 +1,16 @@
 "use client";
 import { ReturnSchool } from "@/api/outList";
 import Button from "@/components/button";
+import Modal from "@/components/modal";
 import React, { useState } from "react";
 
 interface NonReturnProp {
   name: string;
   returnTime?: string;
-  type: "application" | "early-return";
+  type: "application" | "early-return" | "accept";
   id: string;
+  onClick?: () => void;
+  reason: string;
 }
 
 export const NonReturn: React.FC<NonReturnProp> = ({
@@ -15,13 +18,24 @@ export const NonReturn: React.FC<NonReturnProp> = ({
   returnTime,
   type,
   id,
+  onClick,
+  reason,
 }) => {
   const { mutate: ReturnStudent } = ReturnSchool();
-  const [selected, setSelected] = useState<boolean>(false);
+  const [click, setClick] = useState<boolean>(false);
+  const [modal, setModal] = useState<boolean>(false);
+
+  const onClickModal = () => {
+    setModal(true);
+  };
+
+  const onCancelModal = () => {
+    setModal(false);
+  };
 
   const confirmReturn = async () => {
     try {
-      const result = await ReturnStudent(
+      await ReturnStudent(
         { id: id },
         {
           onSuccess: () => {
@@ -36,29 +50,52 @@ export const NonReturn: React.FC<NonReturnProp> = ({
     } catch (error) {
       console.error(error);
     }
+    setModal(false);
   };
 
   return (
-    <div className=" whitespace-nowrap min-w-fit gap-2 flex justify-between w-full items-center bg-white px-4 py-3 rounded-lg">
-      <div className=" text-sub-title4-M">{name}</div>
-      {type === "application" && (
-        <>
-          <div className=" text-caption2 text-neutral-400">
-            {returnTime} 복귀 예정
-          </div>
-          <div className=" p-px">
-            <div className="flex gap-2 w-14">
-              <Button
-                colorType="primary"
-                buttonSize="extraSmall"
-                onClick={confirmReturn}
-              >
-                복귀
-              </Button>
-            </div>
-          </div>
-        </>
-      )}
+    <div onClick={onClick}>
+      <div
+        className={`min-w-fit gap-2 flex justify-between w-full bg-white px-4 py-3 rounded-lg flex-col ${
+          click ? " border border-primary-500" : ""
+        }`}
+        onClick={() => setClick(!click)}
+      >
+        <div className=" whitespace-nowrap min-w-fit gap-2 items-center flex justify-between w-full rounded-lg">
+          <div className=" text-sub-title4-M">{name}</div>
+          {type === "application" && (
+            <>
+              <div className=" text-caption2 text-neutral-400">
+                {returnTime} 복귀 예정
+              </div>
+              <div className=" p-px">
+                <div className="flex gap-2 w-14">
+                  <Button
+                    colorType="primary"
+                    buttonSize="extraSmall"
+                    onClick={onClickModal}
+                  >
+                    복귀
+                  </Button>
+                </div>
+              </div>
+            </>
+          )}
+          {modal && (
+            <Modal
+              heading1={`${name}의 외출을 끝내시겠습니까?`}
+              type="button"
+              buttonMessage="복귀"
+              onCancel={onCancelModal}
+              onConfirm={confirmReturn}
+            />
+          )}
+          {type === "accept" && (
+            <div className=" text-caption2 text-neutral-400">{returnTime}</div>
+          )}
+        </div>
+        {click && <div className=" w-full  text-sub-title4-M">{reason}</div>}
+      </div>
     </div>
   );
 };

@@ -64,6 +64,7 @@ const Dropdown: React.FC<DropdownProp> = ({ type, onChange }) => {
           break;
       }
     }
+    setIsDropdownVisible(false);
   };
 
   const generateOptions = (options: any[]) => {
