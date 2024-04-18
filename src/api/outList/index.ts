@@ -1,6 +1,6 @@
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { instance } from "..";
-import { applicationOK, earlyReturnHome } from "../type";
+import { Accept, ClassProp, applicationOK, earlyReturnHome } from "../type";
 
 export const Application = () => {
   return useQuery<applicationOK[]>({
@@ -29,6 +29,37 @@ export const ReturnSchool = () => {
         const response = await instance.patch(
           `/application/change/${param.id}`
         );
+        return response.data;
+      } catch (error) {
+        throw error;
+      }
+    },
+  });
+};
+
+export const GetClass = () => {
+  return useMutation<applicationOK[], Error, ClassProp>({
+    mutationFn: async (param: ClassProp) => {
+      try {
+        const response = await instance.get(
+          `${param.type}/grade?grade=${param.grade}&class_num=${param.class}`
+        );
+        return response.data;
+      } catch (error) {
+        throw error;
+      }
+    },
+  });
+};
+export const OutAcceptApi = () => {
+  return useMutation<void, Error, Accept>({
+    mutationFn: async (param) => {
+      try {
+        const response = await instance.patch(`${param.type}/status`, {
+          type: param.type,
+          status: param.status,
+          ids: param.ids,
+        });
         return response.data;
       } catch (error) {
         throw error;
