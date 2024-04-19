@@ -32,6 +32,8 @@ const OutList = () => {
       title="외출자 목록"
       subTitle={getFullToday()}
       TabOK={true}
+      leftTab="외출"
+      rightTab="조기귀가"
       TabOnclick={onClickTab}
     >
       <div className=" overflow-y-scroll gap-4 flex flex-col">

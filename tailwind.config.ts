@@ -313,6 +313,7 @@ const config: Config = {
         "25": "6.25rem",
         "15": "3.75rem",
         "90dvh": "90dvh",
+        "80dvh": "80dvh",
       },
       gap: {
         "0.5": "0.125rem",
@@ -342,6 +343,9 @@ const config: Config = {
       screens: {
         "3xl": "1850px",
         mxl: "1650px",
+      },
+      spacing: {
+        "4%": "4%",
       },
     },
   },
