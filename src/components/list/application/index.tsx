@@ -1,13 +1,14 @@
 "use client";
 import { ReturnSchool } from "@/api/outList";
 import Button from "@/components/button";
+import StatusDrop from "@/components/dropdown/status";
 import Modal from "@/components/modal";
 import React, { useState } from "react";
 
 interface NonReturnProp {
   name: string;
   returnTime?: string;
-  type: "application" | "early-return" | "accept";
+  type: "application" | "early-return" | "accept" | "after";
   id: string;
   onClick?: () => void;
   reason: string;
@@ -81,6 +82,7 @@ export const NonReturn: React.FC<NonReturnProp> = ({
               </div>
             </>
           )}
+          {type === "after" && <StatusDrop onChange={() => {}} state="출석" />}
           {modal && (
             <Modal
               heading1={`${name}의 외출을 끝내시겠습니까?`}
@@ -94,7 +96,9 @@ export const NonReturn: React.FC<NonReturnProp> = ({
             <div className=" text-caption2 text-neutral-400">{returnTime}</div>
           )}
         </div>
-        {click && <div className=" w-full  text-sub-title4-M">{reason}</div>}
+        {type !== "after" && click && (
+          <div className=" w-full  text-sub-title4-M">{reason}</div>
+        )}
       </div>
     </div>
   );

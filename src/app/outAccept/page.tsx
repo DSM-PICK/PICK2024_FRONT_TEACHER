@@ -13,7 +13,6 @@ import React, { useEffect, useState } from "react";
 const OutAccept = () => {
   const [selectedTab, setSelectedTab] = useState<boolean>(true);
   const [applicationData, setApplicationData] = useState<applicationOK[]>();
-  const [earlyData, setEarlyData] = useState<earlyReturnHome[]>();
   const [selectGrade, setSelectGrade] = useState<number>(1);
   const [selectClass, setSelectClass] = useState<number>(1);
   const [selectedStudents, setSelectedStudents] = useState<string[]>([]);
@@ -175,6 +174,8 @@ const OutAccept = () => {
       subTitle={getFullToday()}
       TabOK={true}
       TabOnclick={onClickTab}
+      leftTab="외출"
+      rightTab="조기귀가"
       Dropdown={
         <div className=" flex w-full justify-between min-w-fit items-center gap-1">
           <div className=" flex gap-2">
