@@ -6,7 +6,7 @@ import { useState } from "react";
 
 const Main = () => {
   const [date, setDate] = useState(new Date().toLocaleTimeString());
-  const [name, setName] = useState("백승휘");
+  const [name, setName] = useState("");
   const [floor, setFloor] = useState(2);
   return (
     <div className=" bg-primary-1200 flex flex-col items-center ">
