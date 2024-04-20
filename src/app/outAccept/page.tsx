@@ -1,6 +1,6 @@
 "use client";
 import { OutAcceptApi, GetClass } from "@/api/outList";
-import { applicationOK, earlyReturnHome } from "@/api/type";
+import { applicationOK } from "@/api/type";
 import BackGround from "@/components/background";
 import Button from "@/components/button";
 import Dropdown from "@/components/dropdown";
@@ -173,9 +173,9 @@ const OutAccept = () => {
       title="외출자 수락"
       subTitle={getFullToday()}
       TabOK={true}
-      TabOnclick={onClickTab}
       leftTab="외출"
       rightTab="조기귀가"
+      TabOnclick={onClickTab}
       Dropdown={
         <div className=" flex w-full justify-between min-w-fit items-center gap-1">
           <div className=" flex gap-2">
