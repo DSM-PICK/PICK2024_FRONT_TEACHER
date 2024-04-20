@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 import Image from "next/image";
-import eye from "@/assets/svg/Icon/eye.svg";
+import eye from "@/assets/svg/eye.svg";
 import eyeOff from "@/assets/svg/eyeOff.svg"
 
 interface ChangeProps {
