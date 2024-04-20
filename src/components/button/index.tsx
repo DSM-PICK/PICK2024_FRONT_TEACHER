@@ -40,7 +40,7 @@ const Button: React.FC<ButtonProp> = ({
         return " rounded-lg bg-secondary-200 text-secondary-1000  focus:bg-secondary-500 focus:border focus:border-secondary-800 active:bg-secondary-800";
 
       case "tertiary":
-        return " rounded-lg bg-tertiary-500 text-tertiary-900 focus:bg-tertiary-500 focus:border focus:border-tertiary-800 active:bg-tertiary-800";
+        return " rounded-lg bg-tertiary-500 text-primary-1200 focus:bg-tertiary-500 focus:border focus:border-tertiary-800 active:bg-tertiary-800";
 
       case "ghost":
         return " rounded-lg border bg-primary-1000 border-primary-200 focus:border-primary-800 focus:text-primary-500 active:border-primary-800 active:text-primary-800";
