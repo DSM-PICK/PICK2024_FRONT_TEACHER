@@ -6,7 +6,7 @@ interface buttonProps {
   img: string;
 }
 
-const Button: React.FC<buttonProps> = ({ name, img }) => {
+const Button = ({ name, img }: buttonProps) => {
   return (
     <div className=" flex flex-col items-center gap-2">
       <Image

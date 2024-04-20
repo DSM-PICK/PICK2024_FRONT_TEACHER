@@ -3,7 +3,7 @@ import { NextPage } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
-import pick from "@/assets/PiCKLogo.svg";
+import pick from "@/assets/svg/PiCKLogo.svg";
 import { useRouter } from "next/navigation";
 
 const Header: NextPage = ({}) => {

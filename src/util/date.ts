@@ -37,5 +37,5 @@ export function getFullToday() {
 }
 
 export function getToday() {
-  return `${month}-${day}`;
+  return `${month}월 ${day}일`;
 }
