@@ -16,7 +16,7 @@ const CheckPage = ({ type }: checkPageType) => {
   return (
     <>
       {type === "outGoing" ? (
-        <div className=" rounded-xl w-42 h-62 bg-white flex flex-col items-center gap-4">
+        <div className=" rounded-xl w-full h-62 bg-white flex flex-col items-center gap-4">
           <div className=" text-neutral-50 text-sub-title4-M text-center px-4 pt-6">
             현재 외출 중인 학생은 총 <span className=" text-primary-500">{out}명</span>입니다.
           </div>
@@ -30,7 +30,7 @@ const CheckPage = ({ type }: checkPageType) => {
           </Button>
         </div>
       ) : (
-        <div className=" rounded-xl w-42 h-62 bg-white flex flex-col items-center gap-4">
+        <div className=" rounded-xl w-full h-62 bg-white flex flex-col items-center gap-4">
           <div className=" text-neutral-50 text-sub-title4-M text-center px-2 pt-6">
             현재 외출 / 조기 귀가 신청 학생은 총 <span className=" text-secondary-300">{sum}명</span>입니다.
           </div>
