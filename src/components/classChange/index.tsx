@@ -1,7 +1,7 @@
 "use client";
 import Image from "next/image";
 import React, { useState } from "react";
-import nextArrow from "@/assets/Icon/arrow-narrow-right.svg";
+import nextArrow from "@/assets/svg/arrow-narrow-right.svg";
 
 interface ChangeClassProps {
   student: string;

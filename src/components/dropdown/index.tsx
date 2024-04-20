@@ -1,8 +1,8 @@
 "use client";
 import Image from "next/image";
 import React, { useEffect, useRef, useState } from "react";
-import arrow from "@/assets/svg/Icon/chevron-right.svg";
-import downarrow from "@/assets/svg/Icon/downarrow.svg";
+import arrow from "@/assets/svg/chevron-right.svg";
+import downarrow from "@/assets/svg/downarrow.svg";
 
 interface DropdownProp {
   type: "grade" | "class" | "floor" | "classTime" | "club" | "all";
