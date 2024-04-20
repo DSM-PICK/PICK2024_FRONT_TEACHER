@@ -60,3 +60,9 @@ export interface FloorClass {
   start_period: number;
   username: string;
 }
+
+export interface CountOutListType {
+  out: number;
+  request: number;
+  classMove: number;
+}

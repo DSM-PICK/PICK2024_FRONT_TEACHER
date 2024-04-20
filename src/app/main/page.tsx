@@ -5,24 +5,27 @@ import outAcceptImg from "@/assets/svg/outing.svg";
 import AfterManageImg from "@/assets/svg/afterManage.svg";
 import { useEffect, useState } from "react";
 import CheckPage from "./checkPage";
-import { GetName } from "@/api/main";
-import { getFullToday, getToday, getWeekDay } from "@/util/date";
-import { get } from "http";
-
+import { GetName, GetTodaydirector } from "@/api/main";
+import { getToday, getWeekDay } from "@/util/date";
 const Main = () => {
   const [date, setDate] = useState(new Date().toLocaleTimeString());
-  const [floor, setFloor] = useState(null);
-  const [name, setName] = useState<string>();
+  const [floor, setFloor] = useState<string>();
+  const [name, setName] = useState<string>("");
   const { data: getName } = GetName();
+  const { data: getDirector } = GetTodaydirector();
+
   useEffect(() => {
     if (getName) {
       setName(getName);
+      localStorage.setItem("name", getName);
     }
-  }, [getName]);
+    if (getDirector) setFloor(getDirector);
+  }, [getName, getDirector]);
+
   return (
     <>
       <Header />
-      <div className="bg-primary-1200 flex flex-col items-center px-6">
+      <div className="bg-primary-1200 flex flex-col gap-9 items-center px-6 h-dvh">
         <div className="flex w-full justify-between">
           <Button src="/outAccept" name="외출 수락" img={outAcceptImg} />
           <Button src="/afterManage" name="방과후 관리" img={AfterManageImg} />
@@ -33,19 +36,9 @@ const Main = () => {
           <div className="text-sub-title4-M text-neutral-300">
             {getToday()} {getWeekDay()}요일
           </div>
-          {floor !== null ? (
-            <div className=" text-sub-title3-M text-neutral-50">
-              {name} 선생님은{" "}
-              <span className=" text-primary-500">{floor}층 자습감독</span>
-              입니다.
-            </div>
-          ) : (
-            <div className="text-sub-title3-M text-neutral-50">
-              {name} 선생님은 자습감독이 아닙니다.
-            </div>
-          )}
+          <div className=" text-sub-title3-M text-neutral-50">{floor}</div>
         </div>
-        <div className="flex w-full">
+        <div className="flex w-full gap-3">
           <CheckPage type="outGoing" />
           <CheckPage type="homecoming" />
         </div>
