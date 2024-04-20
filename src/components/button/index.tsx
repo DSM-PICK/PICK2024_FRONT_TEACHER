@@ -67,7 +67,7 @@ const Button: React.FC<ButtonProp> = ({
       case "medium":
         return "w-42 min-w-20 h-13 text-Button-M";
       case "small":
-        return "w-38 h-12 text-Button-S";
+        return "w-34 h-11 text-Button-S";
       case "extraSmall":
         return "w-30 h-9 text-Button-ES";
       case "extraSmall2":
@@ -78,7 +78,7 @@ const Button: React.FC<ButtonProp> = ({
   return (
     <div
       onClick={onClick}
-      className={`flex ${getColorClass()} ${getSizeClass()} justify-center items-center cursor-pointer`}
+      className={`flex ${getColorClass()} ${getSizeClass()}  justify-center items-center cursor-pointer`}
     >
       <div>{children}</div>
       <div>{Icon && <img src={Icon.src} width={20} height={20} />}</div>

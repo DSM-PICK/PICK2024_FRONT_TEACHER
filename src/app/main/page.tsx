@@ -8,8 +8,8 @@ import { getFullToday, getToday, getWeekDay } from "@/util/date";
 
 const Main = () => {
   const [date, setDate] = useState(new Date().toLocaleTimeString());
-  const [name, setName] = useState(null);
   const [floor, setFloor] = useState(null);
+  const [name, setName] = useState(null);
   return (
     <div className=" bg-primary-1200 flex flex-col items-center ">
       <Header />

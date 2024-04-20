@@ -29,9 +29,11 @@ const OutList = () => {
 
   return (
     <BackGround
-      title="외출자보기"
+      title="외출자 목록"
       subTitle={getFullToday()}
       TabOK={true}
+      leftTab="외출"
+      rightTab="조기귀가"
       TabOnclick={onClickTab}
     >
       <div className=" overflow-y-scroll gap-4 flex flex-col">
@@ -43,6 +45,7 @@ const OutList = () => {
                 key={index}
                 returnTime={item.end_time}
                 name={getStudentString(item)}
+                reason={item.reason}
               />
             ))
           : earlyData?.map((item, index) => (
@@ -51,6 +54,7 @@ const OutList = () => {
                 key={index}
                 name={getStudentString(item)}
                 type="early-return"
+                reason={item.reason}
               />
             ))}
       </div>
