@@ -48,3 +48,15 @@ export interface ChangeStatus {
   user_id: string;
   status_list: string[];
 }
+
+export interface FloorClass {
+  id: string;
+  class_num: number;
+  classroom_name: string;
+  end_period: number;
+  grade: number;
+  move: string;
+  num: number;
+  start_period: number;
+  username: string;
+}
