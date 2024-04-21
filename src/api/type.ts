@@ -73,3 +73,18 @@ export interface Type {
   num: number;
   name: string;
 }
+export interface AfterStudent {
+  id: string;
+  grade: number;
+  class_num: number;
+  num: number;
+  name: string;
+  status1: string;
+  status2: string;
+  status3: string;
+}
+
+export interface ChangeClub {
+  user_id: string;
+  status_list: string[];
+}

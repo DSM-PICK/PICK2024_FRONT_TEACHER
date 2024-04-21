@@ -1,8 +1,5 @@
 "use client";
-import { ReturnSchool } from "@/api/outList";
-import Button from "@/components/button";
 import StatusDrop from "@/components/dropdown/status";
-import Modal from "@/components/modal";
 import React, { useEffect, useState } from "react";
 
 interface NonReturnProp {
@@ -13,9 +10,9 @@ interface NonReturnProp {
   state5?: string;
   id: string;
   onClick?: () => void;
-  type?: "NO";
+  after?: boolean;
   name: string;
-  time: number;
+  time?: number;
 }
 
 export const AfterList = ({
@@ -27,7 +24,7 @@ export const AfterList = ({
   time,
   id,
   onClick,
-  type,
+  after,
   name,
 }: NonReturnProp) => {
   const Change = (item: string) => {
@@ -66,39 +63,70 @@ export const AfterList = ({
   };
 
   const ClassCheck = (newState: string) => {
-    switch (time) {
-      case 6:
-        handleChange(0, newState);
-        break;
-      case 7:
-        handleChange(1, newState);
-        break;
-      case 8:
-        handleChange(2, newState);
-        break;
-      case 9:
-        handleChange(3, newState);
-        break;
-      case 10:
-        handleChange(4, newState);
-        break;
-      default:
-        break;
+    if (after) {
+      switch (time) {
+        case 8:
+          handleChange(0, newState);
+          break;
+        case 9:
+          handleChange(1, newState);
+          break;
+        case 10:
+          handleChange(2, newState);
+          break;
+        default:
+          break;
+      }
+    } else {
+      switch (time) {
+        case 6:
+          handleChange(0, newState);
+          break;
+        case 7:
+          handleChange(1, newState);
+          break;
+        case 8:
+          handleChange(2, newState);
+          break;
+        case 9:
+          handleChange(3, newState);
+          break;
+        case 10:
+          handleChange(4, newState);
+          break;
+        default:
+          break;
+      }
     }
   };
 
   const changeProp = () => {
-    switch (time) {
-      case 6:
-        state1;
-      case 7:
-        state2;
-      case 8:
-        state3;
-      case 9:
-        state4;
-      case 10:
-        state5;
+    if (after) {
+      switch (time) {
+        case 8:
+          return state1;
+        case 9:
+          return state2;
+        case 10:
+          return state3;
+        default:
+          return "";
+      }
+    } else {
+      switch (time) {
+        case 6:
+          return state1;
+        case 7:
+          return state2;
+        case 8:
+          return state3;
+        case 9:
+          return state4 || "";
+        case 10:
+          return state5 || "";
+        default:
+          return "";
+      }
     }
   };
 
@@ -109,7 +137,7 @@ export const AfterList = ({
       >
         <div className=" whitespace-nowrap min-w-fit gap-2 items-center flex justify-between w-full rounded-lg">
           <div className=" text-sub-title4-M">{name}</div>
-          <StatusDrop onChange={ClassCheck} state={Change(state3)} />
+          <StatusDrop onChange={ClassCheck} state={Change(changeProp())} />
         </div>
       </div>
     </div>
