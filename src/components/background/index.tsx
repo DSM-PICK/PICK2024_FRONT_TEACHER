@@ -26,7 +26,7 @@ const BackGround: React.FC<Prop> = ({
   return (
     <>
       <Header />
-      <div className="min-w-fit min-h-full h-dvh px-6 py-3 bg-primary-1200">
+      <div className="min-w-fit h-full min-h-dvh px-6 py-3 bg-primary-1200">
         <div className="py-3 gap-5 flex flex-col">
           <div className="flex items-center gap-3 font-sans">
             <div className="text-sub-title1-M">{title}</div>

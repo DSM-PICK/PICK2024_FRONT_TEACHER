@@ -7,7 +7,7 @@ export const GetName = () => {
     queryKey: ["name"],
     queryFn: async () => {
       const result = await instance.get("/admin/my-name");
-      localStorage.setItem("name", result.data);
+      localStorage.setItem("name", result.data.name);
       return result.data.name;
     },
   });
