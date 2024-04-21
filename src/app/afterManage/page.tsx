@@ -106,6 +106,7 @@ const AfterManage = () => {
       };
     });
     Post(updatedData);
+    setMadal(false);
   };
 
   const handleAcceptListClick = (id: string, name: string) => {
@@ -131,6 +132,7 @@ const AfterManage = () => {
   };
 
   useEffect(() => {
+    setClubList([]);
     if (getClub) {
       setClubList(getClub);
     }
@@ -250,7 +252,7 @@ const AfterManage = () => {
           />
         )}
       </div>
-      <div className="absolute bottom-4% w-5/6 left-50%">
+      <div className="absolute bottom-4% w-5/6">
         {edit ? (
           selectedTab ? (
             <Button

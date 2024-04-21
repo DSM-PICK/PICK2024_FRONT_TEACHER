@@ -22,6 +22,8 @@ const ClassChange = () => {
   const { data: AccpetMutate } = AcceptClassChange(selectedFloor);
   const { mutate: AccpetList } = AcceptClass();
 
+  const router = useRouter();
+
   const Accept = async () => {
     setAccept(true);
   };
@@ -108,20 +110,11 @@ const ClassChange = () => {
     <BackGround
       TabOnclick={() => {}}
       TabOK={false}
-      title="교실이동수락"
+      title="교실 이동 수락"
       subTitle={getFullToday()}
       Dropdown={
         <div className=" flex justify-between items-center">
           <div className="flex gap-5 items-center">
-            {/* <Button
-              colorType="ghost"
-              buttonSize="small"
-              onClick={() => {
-                nav.push("/classChange/ok");
-              }}
-            >
-              교실 이동 보기
-            </Button> */}
             <Dropdown type="floor" onChange={handleFloorChange} />
           </div>
           <div className=" flex gap-2 w-32">
@@ -186,6 +179,17 @@ const ClassChange = () => {
           onConfirm={Acceptconfirm}
         />
       )}
+      <div className=" absolute bottom-4% w-5/6">
+        <Button
+          onClick={() => {
+            router.push("/classChange/status");
+          }}
+          colorType="primary"
+          buttonSize="full"
+        >
+          전체 이동자 보기
+        </Button>
+      </div>
     </BackGround>
   );
 };
