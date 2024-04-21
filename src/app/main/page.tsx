@@ -6,13 +6,14 @@ import CheckPage from "./checkPage";
 import { GetName, GetTodaydirector } from "@/api/main";
 import { getToday, getWeekDay } from "@/util/date";
 import AfterManageImg from "@/assets/svg/aferManege.svg";
-import attendanceImg from "@/assets/svg/attendance.svg"
-import outingImg from "@/assets/svg/outing.svg"
-import moveClassImg from "@/assets/svg/moveClass.svg"
+import attendanceImg from "@/assets/svg/attendance.svg";
+import outingImg from "@/assets/svg/outing.svg";
+import moveClassImg from "@/assets/svg/moveClass.svg";
 
 const Main = () => {
   const [floor, setFloor] = useState<string>();
   const { data: getDirector } = GetTodaydirector();
+  GetName();
 
   useEffect(() => {
     if (getDirector) setFloor(getDirector);

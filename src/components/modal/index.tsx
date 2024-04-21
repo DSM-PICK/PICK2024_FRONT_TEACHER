@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from "react";
 import Button from "../button";
-//import AutoInput from "../input/auto/page";
+import AutoInput from "../input/auto";
 
 interface ChangeProps {
   text: string;
@@ -76,24 +76,21 @@ const Modal: React.FC<ModalProps> = ({
         <div className=" z-10 bg-white rounded-xl px-5 py-6">
           <div className="flex flex-col gap-8 items-center">
             <div className=" text-neutral-50 text-center">
-              {heading1 && (
-                <div className=" flex flex-col gap-9 max-w-none items-center">
-                  <div className=" text-sub-title2-M flex gap-2">
-                    <div className=" text-purple-400">창조실</div> 인원추가
-                  </div>
-                  <div className=" w-full">
-                    {/* <AutoInput
-                      type="student"
-                      placeholder="학번과 이름을 입력하세요"
-                      width="full"
-                      onChange={AutohandleChange}
-                      value={addstudent.student}
-                      name="student"
-                    /> */}
-                  </div>
-                  {renderButtons()}
+              <div className=" flex flex-col gap-9 max-w-none items-center">
+                <div className=" text-sub-title2-M flex gap-2">
+                  <div className=" text-purple-400">창조실</div> 인원추가
                 </div>
-              )}
+                <div className=" w-full">
+                  <AutoInput
+                    placeholder="학번과 이름을 입력하세요"
+                    width="full"
+                    onChange={AutohandleChange}
+                    value={addstudent.student}
+                    name="student"
+                  />
+                </div>
+                {renderButtons()}
+              </div>
             </div>
           </div>
         </div>

@@ -5,6 +5,7 @@ import BackGround from "@/components/background";
 import Button from "@/components/button";
 import Dropdown from "@/components/dropdown";
 import AfterList from "@/components/list/afterManage";
+import Modal from "@/components/modal";
 import { getStudentString } from "@/util/util";
 import { useEffect, useState } from "react";
 
@@ -13,6 +14,7 @@ const AfterManage = () => {
   const [selectedTab, setSelectedTab] = useState<boolean>(true);
   const [selectClassTime, setSelectClassTime] = useState<number>(8);
   const [selectClub, setSelectClub] = useState<string>("대동여지도");
+  const [modal, setMadal] = useState<boolean>(false);
   const { data: getClub } = GetClubList(selectClub);
   const { mutate: changeStatus } = FixStatus();
 
@@ -56,6 +58,10 @@ const AfterManage = () => {
     setSelectedTab(tab);
   };
 
+  const onAdd = () => {
+    setMadal(true);
+  };
+
   return (
     <BackGround
       title="방과후 관리"
@@ -63,15 +69,30 @@ const AfterManage = () => {
       leftTab="전공 동아리"
       rightTab="방과후(창조실)"
       Dropdown={
-        <div className="flex gap-2">
-          <Dropdown type="club" onChange={handleClubChange} />
-          <Dropdown type="classTime" onChange={handleClassTimeChange} />
-        </div>
+        <>
+          {selectedTab ? (
+            <div className="flex gap-2">
+              <Dropdown type="club" onChange={handleClubChange} />
+              <Dropdown type="classTime" onChange={handleClassTimeChange} />
+            </div>
+          ) : (
+            <div className="flex justify-between gap-2">
+              <Dropdown type="club" onChange={handleClubChange} />
+              <Button
+                colorType="tertiary"
+                buttonSize="extraSmall"
+                onClick={onAdd}
+              >
+                인원 추가
+              </Button>
+            </div>
+          )}
+        </>
       }
       TabOnclick={onClickTab}
     >
       <div className="overflow-y-scroll h-96 flex flex-col gap-4">
-        {selectedTab &&
+        {selectedTab ? (
           clubList.map((item, index) => (
             <AfterList
               key={index}
@@ -82,7 +103,19 @@ const AfterManage = () => {
               state2={item.status7}
               state3={item.status8}
             />
-          ))}
+          ))
+        ) : (
+          <div></div>
+        )}
+        {modal && (
+          <Modal
+            type="add"
+            heading1=""
+            buttonMessage="추가"
+            onCancel={() => {}}
+            onConfirm={() => {}}
+          />
+        )}
       </div>
       <div className="absolute bottom-4% w-5/6 left-50%">
         <Button
