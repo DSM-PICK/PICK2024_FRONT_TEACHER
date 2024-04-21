@@ -88,3 +88,14 @@ export interface ChangeClub {
   user_id: string;
   status_list: string[];
 }
+
+export interface changeClass {
+  class_num: number;
+  classroom_name: string;
+  floor: number;
+  grade: number;
+  id: string;
+  num: number;
+  user_id: string;
+  username: string;
+}

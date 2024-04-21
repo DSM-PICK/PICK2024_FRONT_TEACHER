@@ -1,6 +1,6 @@
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { instance } from "..";
-import { FloorClass } from "../type";
+import { FloorClass, changeClass } from "../type";
 
 export const AcceptClassChange = (floor: number) => {
   return useQuery<FloorClass[]>({
@@ -24,6 +24,21 @@ export const AcceptClass = () => {
         });
       } catch (error) {
         console.log(error);
+      }
+    },
+  });
+};
+
+export const GetFloor = () => {
+  return useMutation<changeClass[], void, { floor: number }>({
+    mutationFn: async (param) => {
+      try {
+        const response = await instance.get(
+          `/class-room/floor?floor=${param.floor}&status=OK`
+        );
+        return response.data;
+      } catch (error) {
+        throw error;
       }
     },
   });
