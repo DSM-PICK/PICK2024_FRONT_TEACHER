@@ -66,3 +66,10 @@ export interface CountOutListType {
   request: number;
   classMove: number;
 }
+
+export interface Type {
+  grade: number;
+  class_num: number;
+  num: number;
+  name: string;
+}

@@ -1,6 +1,6 @@
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { instance } from "..";
-import { ChangeStatus, ClubList } from "../type";
+import { ChangeStatus, ClubList, Type } from "../type";
 
 export const GetClubList = (club: string) => {
   return useQuery<ClubList[]>({
@@ -20,6 +20,16 @@ export const FixStatus = () => {
       } catch (error) {
         console.log(error);
       }
+    },
+  });
+};
+
+export const AllStudent = () => {
+  return useQuery<Type[]>({
+    queryKey: ["AllStudent"],
+    queryFn: async () => {
+      const response = await instance.get(`/after/search`);
+      return response.data;
     },
   });
 };
