@@ -26,7 +26,7 @@ const Main = () => {
         <div className="flex w-full justify-between">
           <Button src="/outAccept" name="외출 수락" img={outingImg} />
           <Button src="/afterManage" name="방과후 관리" img={AfterManageImg} />
-          <Button src="/" name="출석 체크" img={attendanceImg} />
+          <Button src="/attendanceCheck" name="출석 체크" img={attendanceImg} />
           <Button src="/classChange" name="교실 이동" img={moveClassImg} />
         </div>
         <div className="rounded-xl	w-full h-auto bg-white gap-2 flex items-center flex-wrap px-5 py-3">
