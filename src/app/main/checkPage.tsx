@@ -32,7 +32,7 @@ const CheckPage = ({ type }: checkPageType) => {
       {type === "outGoing" ? (
         <div className=" rounded-xl w-full h-62 bg-white flex flex-col items-center gap-3 py-6">
           <div className=" text-neutral-50 text-sub-title4-M text-center px-3">
-            현재 외출 중인 학생은 총{" "}
+            현재 외출 중인 학생은 총
             <span className=" text-primary-500">{list.out}명</span>입니다.
           </div>
           <Image src={outGoingImg} alt="" />
@@ -47,7 +47,7 @@ const CheckPage = ({ type }: checkPageType) => {
       ) : (
         <div className=" rounded-xl w-full h-62 bg-white flex flex-col items-center gap-3 py-6">
           <div className=" text-neutral-50 text-sub-title4-M text-center px-3">
-            현재 외출/귀가 신청 학생은 총{" "}
+            현재 외출/귀가 신청 학생은 총
             <span className=" text-secondary-300">{list.request}명</span>입니다.
           </div>
           <Image src={applicationImg} alt="" />
