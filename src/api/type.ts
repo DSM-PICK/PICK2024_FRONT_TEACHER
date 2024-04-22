@@ -44,6 +44,11 @@ export interface ClubList {
   status10: string;
 }
 
+export interface AttendanceChack {
+  user_id: string;
+  status_list: string[];
+}
+
 export interface ChangeStatus {
   user_id: string;
   status_list: string[];

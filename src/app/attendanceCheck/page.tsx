@@ -1,7 +1,8 @@
 "use client";
-import { GetStudentsAttendance } from "@/api/attendanceCheck";
-import { AfterStudent, ClubList } from "@/api/type";
+import { AttendanceSave, GetStudentsAttendance } from "@/api/attendanceCheck";
+import { AfterStudent, AttendanceChack, ClubList } from "@/api/type";
 import BackGround from "@/components/background";
+import Button from "@/components/button";
 import Dropdown from "@/components/dropdown";
 import AfterList from "@/components/list/afterManage";
 import { getStudentString } from "@/util/util";
@@ -13,6 +14,7 @@ const attendanceCheck = () => {
   const [selectedGrade, setSelectedGrade] = useState<number>(1);
   const [selectedClass, setSelectedClass] = useState<number>(1);
   const { mutate: getStudentsAttendance } = GetStudentsAttendance();
+  const { mutate: attendanceSave } = AttendanceSave();
 
   const handleGradeChange = (selectedOption: number) => {
     setStudents([]);
@@ -46,6 +48,37 @@ const attendanceCheck = () => {
     }
   };
 
+  const AttandenceSaveFn = async () => {
+    const updatedData: AttendanceChack[] = [];
+    students?.forEach((item) => {
+      const localData = localStorage.getItem(item.id);
+      if (localData) {
+        const parsedData = JSON.parse(localData);
+        const studentData = {
+          user_id: item.id,
+          status_list: [parsedData[0], parsedData[1], parsedData[2]],
+        };
+        updatedData.push(studentData);
+      }
+    });
+
+    try {
+      await attendanceSave(updatedData, {
+        onSuccess: () => {
+         //location.reload();
+        },
+        onError: (error) => {
+          alert(error.name);
+        },
+      });
+      updatedData.forEach((item) => {
+        localStorage.setItem(item.user_id, JSON.stringify(item.status_list));
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   useEffect(() => {
     const keys = Object.keys(localStorage);
     keys.forEach((key) => {
@@ -54,32 +87,43 @@ const attendanceCheck = () => {
       }
     });
     Check();
-  }, [selectedGrade, selectedClass]);
+  }, [selectedGrade, selectedClass, selectClassTime]);
 
   return (
     <BackGround
       title="출석 체크"
       TabOK={false}
       Dropdown={
-        <div className="flex">
-          <Dropdown onChange={handleGradeChange} type="grade" />
-          <Dropdown onChange={handleClassChange} type="class" />
-          <Dropdown onChange={handleClassTimeChange} type="classTime" />
+        <div className="flex justify-between">
+          <div className=" flex gap-3">
+            <Dropdown onChange={handleGradeChange} type="grade" />
+            <Dropdown onChange={handleClassChange} type="class" />
+            <Dropdown onChange={handleClassTimeChange} type="classTime" />
+          </div>
+          <div className=" w-16 flex">
+            <Button
+              colorType="primary"
+              onClick={AttandenceSaveFn}
+              buttonSize="extraSmall"
+            >
+              저장
+            </Button>
+          </div>
         </div>
       }
       TabOnclick={() => {}}
     >
       <div className=" flex flex-col gap-4 h-full">
-        {students.map((item, index) => (
+        {students?.map((item, index) => (
           <AfterList
             key={index}
             time={selectClassTime}
             name={getStudentString(item)}
             id={item.id}
-            state1={item.status8}
-            state2={item.status9}
-            state3={item.status10}
-            after={true}
+            state1={item.status6}
+            state2={item.status7}
+            state3={item.status8}
+            after
           />
         ))}
       </div>
