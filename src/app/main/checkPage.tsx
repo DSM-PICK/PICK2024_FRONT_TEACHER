@@ -54,9 +54,9 @@ const CheckPage = ({ type }: checkPageType) => {
           <Button
             colorType="tertiary"
             buttonSize="extraSmall"
-            onClick={() => router.push("/")}
+            onClick={() => router.push("/outAccept")}
           >
-            출결 상태 확인
+            외출 / 귀가 확인
           </Button>
         </div>
       )}
