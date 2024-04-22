@@ -9,14 +9,16 @@ import React, { useEffect, useState } from "react";
 
 const OutList = () => {
   const [selectedTab, setSelectedTab] = useState<boolean>(true);
-  const [applicationData, setApplicationData] = useState<applicationOK[]>();
+  const [applicationData, setApplicationData] = useState<applicationOK[]>([]);
   const [earlyData, setEarlyData] = useState<earlyReturnHome[]>();
 
   const { data: applicationOKData } = Application();
   const { data: earlyReturnData } = EarlyReturn();
 
   useEffect(() => {
-    setApplicationData(applicationOKData);
+    if (applicationOKData) {
+      setApplicationData(applicationOKData);
+    }
   }, [applicationOKData]);
 
   useEffect(() => {
@@ -38,16 +40,20 @@ const OutList = () => {
     >
       <div className=" overflow-y-scroll gap-4 flex flex-col">
         {selectedTab
-          ? applicationData?.map((item, index) => (
-              <NonReturn
-                id={item.id}
-                type="application"
-                key={index}
-                returnTime={item.end_time}
-                name={getStudentString(item)}
-                reason={item.reason}
-              />
-            ))
+          ? Array.isArray(applicationData) && (
+              <>
+                {applicationData.map((item, index) => (
+                  <NonReturn
+                    id={item.id}
+                    type="application"
+                    key={index}
+                    returnTime={item.end_time}
+                    name={getStudentString(item)}
+                    reason={item.reason}
+                  />
+                ))}
+              </>
+            )
           : earlyData?.map((item, index) => (
               <NonReturn
                 id={item.id}
