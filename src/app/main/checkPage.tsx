@@ -56,7 +56,7 @@ const CheckPage = ({ type }: checkPageType) => {
             buttonSize="extraSmall"
             onClick={() => router.push("/outAccept")}
           >
-            외출 / 귀가 확인
+            외출 / 귀가 수락
           </Button>
         </div>
       )}
