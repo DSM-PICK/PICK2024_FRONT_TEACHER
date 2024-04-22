@@ -48,6 +48,11 @@ export const ChangeOut = (type: "APPLICATION" | "EARLY_RETURN") => {
   if (type === "APPLICATION") {
     return "외출";
   } else if (type === "EARLY_RETURN") {
-    return "조기귀가";
+    return a["EARLY_RETURN"];
   }
 };
+
+enum a {
+  APPLICATION="외출",
+  EARLY_RETURN="조기귀가"
+}

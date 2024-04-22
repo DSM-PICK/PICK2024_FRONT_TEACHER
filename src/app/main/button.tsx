@@ -1,14 +1,16 @@
 "use client";
 import Image from "next/image";
+import Link from "next/link";
 
 interface buttonProps {
   name: "외출 수락" | "방과후 관리" | "출석 체크" | "교실 이동";
   img: string;
+  src: string;
 }
 
-const Button: React.FC<buttonProps> = ({ name, img }) => {
+const Button = ({ name, img, src }: buttonProps) => {
   return (
-    <div className=" flex flex-col items-center gap-2">
+    <Link href={src} className=" flex flex-col items-center gap-2">
       <Image
         src={img}
         alt=""
@@ -17,7 +19,7 @@ const Button: React.FC<buttonProps> = ({ name, img }) => {
         className="bg-white rounded-2xl"
       />
       <div className=" text-label2">{name}</div>
-    </div>
+    </Link>
   );
 };
 

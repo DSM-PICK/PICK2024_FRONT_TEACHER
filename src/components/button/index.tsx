@@ -40,7 +40,7 @@ const Button: React.FC<ButtonProp> = ({
         return " rounded-lg bg-secondary-200 text-secondary-1000  focus:bg-secondary-500 focus:border focus:border-secondary-800 active:bg-secondary-800";
 
       case "tertiary":
-        return " rounded-lg bg-tertiary-200 text-tertiary-900 focus:bg-tertiary-500 focus:border focus:border-tertiary-800 active:bg-tertiary-800";
+        return " rounded-lg bg-tertiary-500 text-primary-1200 focus:bg-tertiary-500 focus:border focus:border-tertiary-800 active:bg-tertiary-800";
 
       case "ghost":
         return " rounded-lg border bg-primary-1000 border-primary-200 focus:border-primary-800 focus:text-primary-500 active:border-primary-800 active:text-primary-800";
@@ -67,9 +67,9 @@ const Button: React.FC<ButtonProp> = ({
       case "medium":
         return "w-42 min-w-20 h-13 text-Button-M";
       case "small":
-        return "w-38 h-12 text-Button-S";
+        return "w-34 h-11 text-Button-S";
       case "extraSmall":
-        return "w-30 h-9 text-Button-S";
+        return "w-30 h-9 text-Button-ES";
       case "extraSmall2":
         return "w-36 h-7.5 text-Button-S";
     }
@@ -78,7 +78,7 @@ const Button: React.FC<ButtonProp> = ({
   return (
     <div
       onClick={onClick}
-      className={`flex ${getColorClass()} ${getSizeClass()} justify-center items-center cursor-pointer`}
+      className={`flex ${getColorClass()} ${getSizeClass()}  justify-center items-center cursor-pointer`}
     >
       <div>{children}</div>
       <div>{Icon && <img src={Icon.src} width={20} height={20} />}</div>

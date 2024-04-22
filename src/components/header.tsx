@@ -3,7 +3,7 @@ import { NextPage } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
-import pick from "@/assets/PiCKLogo.svg";
+import pick from "@/assets/svg/PiCKLogo.svg";
 import { useRouter } from "next/navigation";
 
 const Header: NextPage = ({}) => {
@@ -22,7 +22,7 @@ const Header: NextPage = ({}) => {
   }
 
   return (
-    <div className="flex justify-between items-center py-1 ">
+    <div className="flex justify-between items-center py-1 bg-primary-1200 px-6 pt-3">
       <Link href={"/main"}>
         <Image src={pick} alt="" width={48} />
       </Link>

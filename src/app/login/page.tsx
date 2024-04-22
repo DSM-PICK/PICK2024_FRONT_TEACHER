@@ -2,7 +2,7 @@
 import Image from "next/image";
 import Input from "@/components/input";
 import Button from "@/components/button";
-import Logo from "@/assets/PiCKLogo.svg";
+import Logo from "@/assets/svg/PiCKLogo.svg";
 import { useState } from "react";
 import { useLogin } from "@/api/login";
 import { useRouter } from "next/navigation";
