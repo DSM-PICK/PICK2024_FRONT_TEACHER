@@ -192,7 +192,7 @@ const AfterManage = () => {
       }
       TabOnclick={onClickTab}
     >
-      <div className="overflow-y-scroll h-96 flex flex-col gap-4">
+      <div className="overflow-y-scroll h-80 flex flex-col gap-4">
         {selectedTab ? (
           clubList.map((item, index) => (
             <AfterList
