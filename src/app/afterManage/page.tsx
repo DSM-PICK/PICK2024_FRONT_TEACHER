@@ -106,6 +106,7 @@ const AfterManage = () => {
       };
     });
     Post(updatedData);
+    location.reload();
     setMadal(false);
   };
 
