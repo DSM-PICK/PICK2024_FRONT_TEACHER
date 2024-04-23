@@ -63,6 +63,7 @@ const ClassChange = () => {
   const nav = useRouter();
 
   const handleFloorChange = (selectedOption: number) => {
+    setData([]);
     setSelectedFloor(selectedOption);
   };
 
