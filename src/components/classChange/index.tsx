@@ -43,13 +43,13 @@ const ChangeClass: React.FC<ChangeClassProps> = ({
         </div>
       ) : (
         <div
-          className={`whitespace-nowrap rounded-lg justify-between flex bg-white gap-10 w-max px-6 py-5`}
+          className={`whitespace-nowrap rounded-lg justify-between flex bg-white gap-10 w-full px-4 py-3`}
         >
-          <div className="text-Button-L text-neutral-50">{student}</div>
-          <div className="flex gap-4 text-Button-L text-neutral-50">
+          <div className=" text-sub-title4-M text-neutral-50">{student}</div>
+          <div className="flex gap-4 text-sub-title4-M text-neutral-50">
             {prevClass}
             <Image src={nextArrow} alt="" />
-            {nextClass}
+            <span className=" text-primary-300">{nextClass}</span>
           </div>
         </div>
       )}
