@@ -272,9 +272,13 @@ const AfterManage = () => {
               출결 저장하기
             </Button>
           )
-        ) : (
+        ) : selectedTab ? (
           <Button colorType="ghost" buttonSize="full" onClick={onClickSave}>
             출결 체크하기
+          </Button>
+        ) : (
+          <Button colorType="ghost" buttonSize="full" onClick={handleSaveClub}>
+            출결 저장하기
           </Button>
         )}
       </div>
