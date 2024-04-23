@@ -65,7 +65,7 @@ const attendanceCheck = () => {
     try {
       await attendanceSave(updatedData, {
         onSuccess: () => {
-         //location.reload();
+          alert("저장되었습니다");
         },
         onError: (error) => {
           alert(error.name);
