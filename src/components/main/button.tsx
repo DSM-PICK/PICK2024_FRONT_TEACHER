@@ -3,7 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 
 interface buttonProps {
-  name: "외출 수락" | "방과후 관리" | "출석 체크" | "교실 이동";
+  name: "외출 수락" | "방과후 출결" | "출석 체크" | "교실 이동";
   img: string;
   src: string;
 }

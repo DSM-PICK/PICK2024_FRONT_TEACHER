@@ -1,8 +1,8 @@
 "use client";
 import Header from "@/components/header";
-import Button from "./button";
+import Button from "../../components/main/button";
 import { useEffect, useState } from "react";
-import CheckPage from "./checkPage";
+import CheckPage from "../../components/main/checkPage";
 import { GetName, GetTodaydirector } from "@/api/main";
 import { getToday, getWeekDay } from "@/util/date";
 import AfterManageImg from "@/assets/svg/aferManege.svg";
@@ -25,7 +25,7 @@ const Main = () => {
       <div className="bg-primary-1200 flex flex-col gap-9 items-center px-6 h-dvh pt-7">
         <div className="flex w-full justify-between">
           <Button src="/outAccept" name="외출 수락" img={outingImg} />
-          <Button src="/afterManage" name="방과후 관리" img={AfterManageImg} />
+          <Button src="/afterManage" name="방과후 출결" img={AfterManageImg} />
           <Button src="/attendanceCheck" name="출석 체크" img={attendanceImg} />
           <Button src="/classChange" name="교실 이동" img={moveClassImg} />
         </div>
