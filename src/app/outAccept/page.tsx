@@ -134,6 +134,7 @@ const OutAccept = () => {
           },
           {
             onSuccess: () => {
+              location.reload();
               setNomodal(false);
             },
             onError: (error) => {
@@ -161,8 +162,8 @@ const OutAccept = () => {
           },
           {
             onSuccess: () => {
+              location.reload();
               setAcModal(false);
-              // location.reload();
             },
             onError: (error) => {
               console.error("Out accept error", error);
