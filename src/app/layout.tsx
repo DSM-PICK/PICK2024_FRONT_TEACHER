@@ -2,6 +2,7 @@ import { Provider } from "./provider";
 import "../../tailwind.config";
 import "@/style/global.css";
 import Head from "next/head";
+import { Noto_Sans_KR } from "next/font/google";
 
 export const metadata = {
   title: "PiCK",
@@ -10,6 +11,8 @@ export const metadata = {
     icon: "/favicon.svg",
   },
 };
+
+const NotoSans = Noto_Sans_KR({ subsets: ["latin"] });
 
 export default function RootLayout({
   children,
@@ -23,7 +26,7 @@ export default function RootLayout({
         <title>{metadata.title}</title>
         <meta name="description" content={metadata.description} />
       </Head>
-      <body className="">
+      <body className={NotoSans.className}>
         <Provider>{children}</Provider>
       </body>
     </html>
