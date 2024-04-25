@@ -62,11 +62,11 @@ const Modal: React.FC<ModalProps> = ({
       {type === "button" || type === "error" ? (
         <div className=" z-10 bg-white rounded-xl px-5 py-6">
           <div className="flex flex-col gap-8 items-center">
-            <div className="font-sans text-neutral-50 text-center  text-sub-title2-M">
+            <div className=" text-neutral-50 text-center  text-sub-title2-M">
               {heading1 && <div className="max-w-none">{heading1}</div>}
               {heading2 && <div className=" w-max">{heading2}</div>}
             </div>
-            <div className="font-sans  text-label2 text-neutral-400 text-center">
+            <div className=" text-label2 text-neutral-400 text-center">
               {buttonMessage}하기 선택하면 다시 변경할 수 없습니다.
             </div>
             {renderButtons()}
