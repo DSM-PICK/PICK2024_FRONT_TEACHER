@@ -133,16 +133,18 @@ const ClassChange = () => {
         </div>
       }
     >
-      {data?.map((item, index) => (
-        <ChangeClass
-          type="accept"
-          key={index}
-          onClick={() => handleAcceptListClick(item.id, item.username)}
-          prevClass={`${item.grade}-${item.class_num}`}
-          nextClass={`${item.classroom_name}`}
-          student={getStudentString(item)}
-        />
-      ))}
+      <div className=" flex flex-col h-60dvh overflow-y-scroll gap-4">
+        {data?.map((item, index) => (
+          <ChangeClass
+            type="accept"
+            key={index}
+            onClick={() => handleAcceptListClick(item.id, item.username)}
+            prevClass={`${item.grade}-${item.class_num}`}
+            nextClass={`${item.classroom_name}`}
+            student={getStudentString(item)}
+          />
+        ))}
+      </div>
 
       {refuse && (
         <Modal

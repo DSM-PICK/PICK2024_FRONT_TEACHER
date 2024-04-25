@@ -314,6 +314,7 @@ const config: Config = {
         "15": "3.75rem",
         "90dvh": "90dvh",
         "80dvh": "80dvh",
+        "60dvh": "60dvh",
       },
       gap: {
         "0.5": "0.125rem",
