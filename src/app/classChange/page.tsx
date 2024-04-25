@@ -25,11 +25,19 @@ const ClassChange = () => {
   const router = useRouter();
 
   const Accept = async () => {
-    setAccept(true);
+    if (selectedStudents.length === 0) {
+      alert("교실 이동 수락 할 학생을 선택해 주세요");
+    } else {
+      setAccept(true);
+    }
   };
 
   const Refuse = () => {
-    setRefuse(true);
+    if (selectedStudents.length === 0) {
+      alert("교실 이동 거절 할 학생을 선택해 주세요");
+    } else {
+      setRefuse(true);
+    }
   };
 
   useEffect(() => {
@@ -107,6 +115,20 @@ const ClassChange = () => {
     }
   };
 
+  const acceptColor = () => {
+    if (selectedStudents.length === 0) {
+      return "solidDisabled";
+    }
+    return "primary";
+  };
+
+  const refuseColor = () => {
+    if (selectedStudents.length === 0) {
+      return "ghostDisabled";
+    }
+    return "red";
+  };
+
   return (
     <BackGround
       TabOnclick={() => {}}
@@ -119,11 +141,15 @@ const ClassChange = () => {
             <Dropdown type="floor" onChange={handleFloorChange} />
           </div>
           <div className=" flex gap-2 w-32">
-            <Button colorType="red" buttonSize="extraSmall2" onClick={Refuse}>
+            <Button
+              colorType={refuseColor()}
+              buttonSize="extraSmall2"
+              onClick={Refuse}
+            >
               거절
             </Button>
             <Button
-              colorType="primary"
+              colorType={acceptColor()}
               buttonSize="extraSmall2"
               onClick={Accept}
             >

@@ -48,6 +48,20 @@ const OutAccept = () => {
     }
   };
 
+  const acceptColor = () => {
+    if (selectedStudents.length === 0) {
+      return "solidDisabled";
+    }
+    return "primary";
+  };
+
+  const refuseColor = () => {
+    if (selectedStudents.length === 0) {
+      return "ghostDisabled";
+    }
+    return "red";
+  };
+
   const handleClassChange = (selectedOption: number) => {
     if (selectGrade === 5) {
       alert("학년을 선택해주세요");
@@ -106,7 +120,9 @@ const OutAccept = () => {
   };
 
   const Accept = () => {
-    setAcModal(true);
+    if (selectedStudents.length === 0) {
+      alert("외출 수락 할 학생을 선택해주세요");
+    } else setAcModal(true);
   };
 
   const onCancel = () => {
@@ -115,7 +131,9 @@ const OutAccept = () => {
   };
 
   const No = () => {
-    setNomodal(true);
+    if (selectedStudents.length === 0) {
+      alert("외출 거절 할 학생을 선택해주세요");
+    } else setNomodal(true);
   };
 
   const onClickTab = (tab: boolean) => {
@@ -193,11 +211,15 @@ const OutAccept = () => {
             <Dropdown type="class" onChange={handleClassChange} />
           </div>
           <div className=" flex gap-2 w-32">
-            <Button colorType="red" buttonSize="extraSmall2" onClick={No}>
+            <Button
+              colorType={refuseColor()}
+              buttonSize="extraSmall2"
+              onClick={No}
+            >
               거절
             </Button>
             <Button
-              colorType="primary"
+              colorType={acceptColor()}
               buttonSize="extraSmall2"
               onClick={Accept}
             >
