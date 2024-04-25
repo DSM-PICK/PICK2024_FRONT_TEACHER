@@ -26,7 +26,7 @@ const Header: NextPage = ({}) => {
       <Link href={"/main"}>
         <Image src={pick} alt="" width={48} />
       </Link>
-      <div className="flex font-sans text-nowrap text-sub-title4-M  text-neutral-50">
+      <div className="flex text-nowrap text-sub-title4-M  text-neutral-50">
         {teacherName ? `${teacherName}선생님` : "선생님"}
       </div>
     </div>
