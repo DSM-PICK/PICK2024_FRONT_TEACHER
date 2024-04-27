@@ -11,8 +11,8 @@ const Tab: React.FC<Tab> = ({ firstText, SecondText, onClick }) => {
 
   const selectTabClass = (tab: boolean) =>
     selectedTab === tab
-      ? "font-sans text-sub-title3-B w-full border-b-1 border-primary-500 py-3 flex items-center justify-center select-none"
-      : "font-sans text-sub-title3-B0 py-3 w-full flex items-center justify-center select-none";
+      ? " text-sub-title3-B w-full border-b-1 border-primary-500 py-3 flex items-center justify-center select-none"
+      : " text-sub-title3-B0 py-3 w-full flex items-center justify-center select-none";
 
   const handleTabClick = (tab: boolean) => {
     setSelectedTab(tab);

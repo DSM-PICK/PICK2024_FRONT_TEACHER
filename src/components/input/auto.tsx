@@ -42,7 +42,7 @@ const AutoInput: React.FC<AutoInputProps> = ({
   const [selectedValues, setSelectedValues] = useState<string[]>([]);
   const { data: GetStudentMutate } = AllStudent();
 
-  const containerClassName = `font-sans w-${width} h-auto border border-neutral-900 rounded flex justify-between items-center px-2 bg-neutral-900 hover:border-neutral-500 hover:bg-white active:border-secondary-500 caret-primary-500 focus:border-secondary-500`;
+  const containerClassName = ` w-${width} h-auto border border-neutral-900 rounded flex justify-between items-center px-2 bg-neutral-900 hover:border-neutral-500 hover:bg-white active:border-secondary-500 caret-primary-500 focus:border-secondary-500`;
 
   const [data, setData] = useState<Type[]>([]);
 
@@ -64,7 +64,7 @@ const AutoInput: React.FC<AutoInputProps> = ({
   const [student, setStudent] = useState<string[]>([]);
 
   const inputClassName =
-    "h-10 px-2 border-none bg-transparent placeholder-neutral-500 focus:outline-none rounded font-sans w-full";
+    "h-10 px-2 border-none bg-transparent placeholder-neutral-500 focus:outline-none rounded w-full";
 
   const handleInputChange = (inputText: string) => {
     const filtered = student?.filter((item) =>

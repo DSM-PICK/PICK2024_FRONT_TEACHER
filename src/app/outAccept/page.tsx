@@ -30,6 +30,15 @@ const OutAccept = () => {
     AcceptDataList();
   }, [selectGrade, selectClass]);
 
+  useEffect(() => {
+    const grade = parseInt(localStorage.getItem("grade") || "1", 10);
+    const class_num = parseInt(localStorage.getItem("class_num") || "1", 10);
+    const setgrade = grade === 0 ? 1 : grade;
+    const setclass_num = class_num === 0 ? 1 : class_num;
+    setSelectGrade(setgrade);
+    setSelectClass(setclass_num);
+  }, []);
+
   const handleGradeChange = (selectedOption: number) => {
     if (selectedOption === 5) {
       setSelectGrade(5);
@@ -37,6 +46,20 @@ const OutAccept = () => {
     } else {
       setSelectGrade(selectedOption);
     }
+  };
+
+  const acceptColor = () => {
+    if (selectedStudents.length === 0) {
+      return "solidDisabled";
+    }
+    return "primary";
+  };
+
+  const refuseColor = () => {
+    if (selectedStudents.length === 0) {
+      return "ghostDisabled";
+    }
+    return "red";
   };
 
   const handleClassChange = (selectedOption: number) => {
@@ -97,7 +120,9 @@ const OutAccept = () => {
   };
 
   const Accept = () => {
-    setAcModal(true);
+    if (selectedStudents.length === 0) {
+      alert("외출 수락 할 학생을 선택해주세요");
+    } else setAcModal(true);
   };
 
   const onCancel = () => {
@@ -106,7 +131,9 @@ const OutAccept = () => {
   };
 
   const No = () => {
-    setNomodal(true);
+    if (selectedStudents.length === 0) {
+      alert("외출 거절 할 학생을 선택해주세요");
+    } else setNomodal(true);
   };
 
   const onClickTab = (tab: boolean) => {
@@ -125,6 +152,7 @@ const OutAccept = () => {
           },
           {
             onSuccess: () => {
+              location.reload();
               setNomodal(false);
             },
             onError: (error) => {
@@ -152,8 +180,8 @@ const OutAccept = () => {
           },
           {
             onSuccess: () => {
+              location.reload();
               setAcModal(false);
-              // location.reload();
             },
             onError: (error) => {
               console.error("Out accept error", error);
@@ -183,11 +211,15 @@ const OutAccept = () => {
             <Dropdown type="class" onChange={handleClassChange} />
           </div>
           <div className=" flex gap-2 w-32">
-            <Button colorType="red" buttonSize="extraSmall2" onClick={No}>
+            <Button
+              colorType={refuseColor()}
+              buttonSize="extraSmall2"
+              onClick={No}
+            >
               거절
             </Button>
             <Button
-              colorType="primary"
+              colorType={acceptColor()}
               buttonSize="extraSmall2"
               onClick={Accept}
             >
