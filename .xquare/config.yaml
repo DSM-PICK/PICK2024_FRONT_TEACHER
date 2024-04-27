@@ -1,5 +1,5 @@
 config:
-  name: pick-web-teacher
+  name: pick-teacher
   service_type: fe
   port: 3000
   domain:
