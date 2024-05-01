@@ -125,15 +125,15 @@ const OutAccept = () => {
     } else setAcModal(true);
   };
 
-  const onCancel = () => {
-    setAcModal(false);
-    setNomodal(false);
-  };
-
   const No = () => {
     if (selectedStudents.length === 0) {
       alert("외출 거절 할 학생을 선택해주세요");
     } else setNomodal(true);
+  };
+
+  const onCancel = () => {
+    setAcModal(false);
+    setNomodal(false);
   };
 
   const onClickTab = (tab: boolean) => {
