@@ -93,7 +93,7 @@ const attendanceCheck = () => {
       }
     });
     Check();
-  }, [selectedGrade, selectedClass, selectClassTime]);
+  }, [selectedGrade, selectedClass]);
 
   return (
     <BackGround
