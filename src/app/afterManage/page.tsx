@@ -40,7 +40,13 @@ const AfterManage = () => {
         const parsedData = JSON.parse(localData);
         const studentData = {
           user_id: item.id,
-          status_list: [parsedData[0], parsedData[1], parsedData[2]],
+          status_list: [
+            parsedData[0],
+            parsedData[1],
+            parsedData[2],
+            parsedData[3],
+            parsedData[4],
+          ],
         };
         updatedData.push(studentData);
       }
@@ -139,6 +145,15 @@ const AfterManage = () => {
     }
   }, [getClub]);
 
+  useEffect(() => {
+    const keys = Object.keys(localStorage);
+    keys.forEach((key) => {
+      if (key.includes("-")) {
+        localStorage.removeItem(key);
+      }
+    });
+  }, [selectClub]);
+
   const handleClubChange = (selectedOption: string) => {
     setSelectClub(selectedOption);
   };
@@ -203,6 +218,8 @@ const AfterManage = () => {
               state1={item.status6}
               state2={item.status7}
               state3={item.status8}
+              state4={item.status9}
+              state5={item.status10}
             />
           ))
         ) : (
@@ -220,6 +237,8 @@ const AfterManage = () => {
                           state1={item.status1}
                           state2={item.status2}
                           state3={item.status3}
+                          state4={item.status4}
+                          state5={item.status5}
                           name={`${setStudentNum(item)} ${item.name}`}
                           onClick={() =>
                             handleAcceptListClick(item.id, item.name)
