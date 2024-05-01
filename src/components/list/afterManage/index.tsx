@@ -6,8 +6,8 @@ interface NonReturnProp {
   state1: string;
   state2: string;
   state3: string;
-  state4?: string;
-  state5?: string;
+  state4: string;
+  state5: string;
   id: string;
   onClick?: () => void;
   after?: boolean;
@@ -24,7 +24,6 @@ export const AfterList = ({
   time,
   id,
   onClick,
-  after,
   name,
 }: NonReturnProp) => {
   const Change = (item: string) => {
@@ -49,7 +48,7 @@ export const AfterList = ({
   const [statusList, setStatusList] = useState<string[]>([]);
 
   useEffect(() => {
-    setStatusList([state1, state2, state3]);
+    setStatusList([state1, state2, state3, state4, state5]);
   }, [state1, state2, state3]);
 
   useEffect(() => {
@@ -63,70 +62,41 @@ export const AfterList = ({
   };
 
   const ClassCheck = (newState: string) => {
-    if (after) {
-      switch (time) {
-        case 8:
-          handleChange(0, newState);
-          break;
-        case 9:
-          handleChange(1, newState);
-          break;
-        case 10:
-          handleChange(2, newState);
-          break;
-        default:
-          break;
-      }
-    } else {
-      switch (time) {
-        case 6:
-          handleChange(0, newState);
-          break;
-        case 7:
-          handleChange(1, newState);
-          break;
-        case 8:
-          handleChange(2, newState);
-          break;
-        case 9:
-          handleChange(3, newState);
-          break;
-        case 10:
-          handleChange(4, newState);
-          break;
-        default:
-          break;
-      }
+    switch (time) {
+      case 6:
+        handleChange(0, newState);
+        break;
+      case 7:
+        handleChange(1, newState);
+        break;
+      case 8:
+        handleChange(2, newState);
+        break;
+      case 9:
+        handleChange(3, newState);
+        break;
+      case 10:
+        handleChange(4, newState);
+        break;
+      default:
+        break;
     }
   };
 
   const changeProp = () => {
-    if (after) {
-      switch (time) {
-        case 8:
-          return state1;
-        case 9:
-          return state2;
-        case 10:
-          return state3;
-        default:
-          return "";
-      }
-    } else {
-      switch (time) {
-        case 6:
-          return state1;
-        case 7:
-          return state2;
-        case 8:
-          return state3;
-        case 9:
-          return state4 || "";
-        case 10:
-          return state5 || "";
-        default:
-          return "";
-      }
+    switch (time) {
+      case 6:
+        return state1;
+      case 7:
+        return state2;
+      case 8:
+        return state3;
+      case 9:
+        return state4 || "";
+      case 10:
+        return state5 || "";
+      default:
+        return "";
     }
   };
 

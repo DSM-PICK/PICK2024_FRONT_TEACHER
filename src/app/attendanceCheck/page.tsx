@@ -56,7 +56,13 @@ const attendanceCheck = () => {
         const parsedData = JSON.parse(localData);
         const studentData = {
           user_id: item.id,
-          status_list: [parsedData[0], parsedData[1], parsedData[2]],
+          status_list: [
+            parsedData[0],
+            parsedData[1],
+            parsedData[2],
+            parsedData[3],
+            parsedData[4],
+          ],
         };
         updatedData.push(studentData);
       }
@@ -123,6 +129,8 @@ const attendanceCheck = () => {
             state1={item.status6}
             state2={item.status7}
             state3={item.status8}
+            state4={item.status9}
+            state5={item.status10}
             after
           />
         ))}
