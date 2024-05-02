@@ -20,7 +20,7 @@ const BugReport = () => {
     content: "",
     file_name: "",
   });
-  const [fileName, setFileName] = useState<string>();
+  let filename = "";
 
   const handleContent = ({ text, name }: { text: string; name: string }) => {
     setData({ ...data, [name]: text });
@@ -34,7 +34,7 @@ const BugReport = () => {
           { file: selectedFile },
           {
             onSuccess: (data) => {
-              setFileName(data);
+              filename = data;
             },
             onError: (error) => {
               alert(error.message);
@@ -54,7 +54,7 @@ const BugReport = () => {
         setData({
           title: "",
           content: "",
-          file_name: fileName ? fileName : "",
+          file_name: filename ? filename : "",
         });
       },
       onError: () => {
