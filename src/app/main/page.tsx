@@ -9,6 +9,7 @@ import AfterManageImg from "@/assets/svg/aferManege.svg";
 import attendanceImg from "@/assets/svg/attendance.svg";
 import outingImg from "@/assets/svg/outing.svg";
 import moveClassImg from "@/assets/svg/moveClass.svg";
+import BugImg from "@/assets/svg/bug.svg";
 
 const Main = () => {
   const [floor, setFloor] = useState<string>();
@@ -28,6 +29,7 @@ const Main = () => {
           <Button src="/afterManage" name="방과후 출결" img={AfterManageImg} />
           <Button src="/attendanceCheck" name="출석 체크" img={attendanceImg} />
           <Button src="/classChange" name="교실 이동" img={moveClassImg} />
+          <Button src="/BugReport" name="버그 제보" img={BugImg} />
         </div>
         <div className="rounded-xl	w-full h-auto bg-white gap-2 flex items-center flex-wrap px-5 py-3">
           <div className="text-sub-title4-M text-neutral-300">
