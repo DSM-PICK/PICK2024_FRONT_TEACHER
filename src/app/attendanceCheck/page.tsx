@@ -1,6 +1,6 @@
 "use client";
 import { AttendanceSave, GetStudentsAttendance } from "@/api/attendanceCheck";
-import { AfterStudent, AttendanceChack, ClubList } from "@/api/type";
+import { AttendanceChack, ClubList } from "@/api/type";
 import BackGround from "@/components/background";
 import Button from "@/components/button";
 import Dropdown from "@/components/dropdown";
