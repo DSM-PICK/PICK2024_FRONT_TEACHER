@@ -87,6 +87,8 @@ export interface AfterStudent {
   status1: string;
   status2: string;
   status3: string;
+  status4: string;
+  status5: string;
 }
 
 export interface ChangeClub {

@@ -3,10 +3,10 @@ import Image from "next/image";
 import Input from "@/components/input";
 import Button from "@/components/button";
 import Logo from "@/assets/svg/PiCKLogo.svg";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useLogin } from "@/api/login";
 import { useRouter } from "next/navigation";
-import { saveToken } from "@/util/auth";
+import { cookie, saveToken } from "@/util/auth";
 
 interface ChangeProps {
   text: string;
@@ -59,6 +59,11 @@ const Login = () => {
       router.push("/login");
     }
   };
+  
+  useEffect(() => {
+    cookie.remove("access_token");
+    cookie.remove("refresh_token");
+  }, []);
 
   const BtnColor = () => {
     if (data.admin_id === "" || data.password === "") {
