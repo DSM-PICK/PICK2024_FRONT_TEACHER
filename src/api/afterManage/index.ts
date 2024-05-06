@@ -7,8 +7,7 @@ import {
   ClubList,
   Type,
 } from "../type";
-import { apiError } from "@/hook/errorHandling";
-const { handleError } = apiError();
+import apiError from "@/hook/errorHandling";
 
 export const GetClubList = (club: string) => {
   return useQuery<ClubList[]>({
@@ -21,6 +20,7 @@ export const GetClubList = (club: string) => {
 };
 
 export const FixStatus = () => {
+  const { handleError } = apiError();
   return useMutation<void, Error, ChangeStatus[]>({
     mutationFn: async (param) => {
       try {
@@ -43,6 +43,7 @@ export const AllStudent = () => {
 };
 
 export const PostStudent = () => {
+  const { handleError } = apiError();
   return useMutation<void, Error, { student_num: string }[]>({
     mutationFn: async (param) => {
       try {
@@ -65,6 +66,7 @@ export const GetAfterStudent = () => {
 };
 
 export const AfterStudentDelete = () => {
+  const { handleError } = apiError();
   return useMutation<void, Error, { id: string }>({
     mutationFn: async ({ id }) => {
       try {
@@ -82,6 +84,7 @@ export const AfterStudentDelete = () => {
 };
 
 export const CheckStatus = () => {
+  const { handleError } = apiError();
   return useMutation<void, Error, ChangeClub[]>({
     mutationFn: async (param) => {
       try {
