@@ -1,7 +1,6 @@
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { instance } from "..";
 import { apiError } from "@/hook/errorHandling";
-const { handleError } = apiError();
 
 interface BugProp {
   title: string;
@@ -10,6 +9,7 @@ interface BugProp {
 }
 
 export const BugPost = () => {
+  const { handleError } = apiError();
   return useMutation<void, Error, BugProp>({
     mutationFn: async (param) => {
       try {
@@ -26,6 +26,7 @@ export const BugPost = () => {
 };
 
 export const BugImg = () => {
+  const { handleError } = apiError();
   return useMutation<string, Error, { file: File }>({
     mutationFn: async (param) => {
       try {
