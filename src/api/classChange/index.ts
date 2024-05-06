@@ -1,7 +1,7 @@
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { instance } from "..";
 import { FloorClass, changeClass } from "../type";
-import { apiError } from "@/hook/errorHandling";
+import apiError from "@/hook/errorHandling";
 
 export const AcceptClassChange = (floor: number) => {
   return useQuery<FloorClass[]>({

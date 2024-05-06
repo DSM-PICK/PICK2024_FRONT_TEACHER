@@ -1,7 +1,7 @@
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { instance } from "..";
 import { AttendanceChack, ClubList } from "../type";
-import { apiError } from "@/hook/errorHandling";
+import apiError from "@/hook/errorHandling";
 
 export const GetStudentsAttendance = () => {
   const { handleError } = apiError();

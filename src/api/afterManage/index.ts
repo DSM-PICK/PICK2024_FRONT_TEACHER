@@ -7,7 +7,7 @@ import {
   ClubList,
   Type,
 } from "../type";
-import { apiError } from "@/hook/errorHandling";
+import apiError from "@/hook/errorHandling";
 
 export const GetClubList = (club: string) => {
   return useQuery<ClubList[]>({

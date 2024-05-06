@@ -1,6 +1,6 @@
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { instance } from "..";
-import { apiError } from "@/hook/errorHandling";
+import apiError from "@/hook/errorHandling";
 
 interface BugProp {
   title: string;
