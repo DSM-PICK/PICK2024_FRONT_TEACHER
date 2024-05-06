@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { instance } from "..";
-import { cookie } from '@/util/auth';
+import { cookie } from "@/util/auth";
 
 interface Login {
   admin_id: string;

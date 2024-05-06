@@ -1,6 +1,8 @@
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { instance } from "..";
 import { AttendanceChack, ClubList } from "../type";
+import { apiError } from "@/hook/errorHandling";
+const { handleError } = apiError();
 
 export const GetStudentsAttendance = () => {
   return useMutation<ClubList[], Error, { grade: number; class: number }>({
@@ -11,7 +13,7 @@ export const GetStudentsAttendance = () => {
         );
         return response.data;
       } catch (error) {
-        console.log(error);
+        handleError(error);
       }
     },
   });
@@ -23,7 +25,7 @@ export const AttendanceSave = () => {
       try {
         await instance.patch("/attendance/modify", param);
       } catch (error) {
-        console.log(error);
+        handleError(error);
       }
     },
   });

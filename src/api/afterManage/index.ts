@@ -7,6 +7,8 @@ import {
   ClubList,
   Type,
 } from "../type";
+import { apiError } from "@/hook/errorHandling";
+const { handleError } = apiError();
 
 export const GetClubList = (club: string) => {
   return useQuery<ClubList[]>({
@@ -24,7 +26,7 @@ export const FixStatus = () => {
       try {
         await instance.patch(`/attendance/modify`, param);
       } catch (error) {
-        console.log(error);
+        handleError(error);
       }
     },
   });
@@ -46,7 +48,7 @@ export const PostStudent = () => {
       try {
         await instance.post(`/after`, param);
       } catch (error) {
-        console.log(error);
+        handleError(error);
       }
     },
   });
@@ -72,7 +74,7 @@ export const AfterStudentDelete = () => {
           },
         });
       } catch (error) {
-        console.log(error);
+        handleError(error);
         throw new Error("Failed to delete student.");
       }
     },
@@ -85,7 +87,7 @@ export const CheckStatus = () => {
       try {
         await instance.patch(`/attendance/modify`, param);
       } catch (error) {
-        console.log(error);
+        handleError(error);
       }
     },
   });

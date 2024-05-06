@@ -1,6 +1,8 @@
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { instance } from "..";
 import { FloorClass, changeClass } from "../type";
+import { apiError } from "@/hook/errorHandling";
+const { handleError } = apiError();
 
 export const AcceptClassChange = (floor: number) => {
   return useQuery<FloorClass[]>({
@@ -23,7 +25,7 @@ export const AcceptClass = () => {
           ids: param.id,
         });
       } catch (error) {
-        console.log(error);
+        handleError(error);
       }
     },
   });
@@ -38,7 +40,7 @@ export const GetFloor = () => {
         );
         return response.data;
       } catch (error) {
-        throw error;
+        handleError(error);
       }
     },
   });
