@@ -1,6 +1,8 @@
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { instance } from "..";
 import { Accept, ClassProp, applicationOK, earlyReturnHome } from "../type";
+import { apiError } from "@/hook/errorHandling";
+const { handleError } = apiError();
 
 export const Application = () => {
   return useQuery<applicationOK[]>({
@@ -31,7 +33,7 @@ export const ReturnSchool = () => {
         );
         return response.data;
       } catch (error) {
-        throw error;
+        handleError(error);
       }
     },
   });
@@ -46,7 +48,7 @@ export const GetClass = () => {
         );
         return response.data;
       } catch (error) {
-        throw error;
+        handleError(error);
       }
     },
   });
@@ -62,7 +64,7 @@ export const OutAcceptApi = () => {
         });
         return response.data;
       } catch (error) {
-        throw error;
+        handleError(error);
       }
     },
   });

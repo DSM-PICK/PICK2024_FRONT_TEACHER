@@ -1,5 +1,7 @@
 import axios, { AxiosError } from "axios";
 import { cookie } from "@/util/auth";
+import { apiError } from "@/hook/errorHandling";
+const { handleError } = apiError();
 
 const BASEURL = process.env.NEXT_PUBLIC_API_KEY;
 
@@ -63,16 +65,16 @@ instance.interceptors.response.use(
               return axios.request(error.config);
             }
           } catch {
-            throw error;
+            handleError(error);
           }
         } else {
-          throw error;
+          handleError(error);
         }
       } else {
-        throw error;
+        handleError(error);
       }
     } else {
-      throw error;
+      handleError(error);
     }
   }
 );
