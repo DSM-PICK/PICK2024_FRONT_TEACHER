@@ -1,5 +1,6 @@
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { instance } from "..";
+import apiError from "@/hook/errorHandling";
 
 interface BugProp {
   title: string;
@@ -8,6 +9,7 @@ interface BugProp {
 }
 
 export const BugPost = () => {
+  const { handleError } = apiError();
   return useMutation<void, Error, BugProp>({
     mutationFn: async (param) => {
       try {
@@ -17,13 +19,14 @@ export const BugPost = () => {
           file_name: param.file_name,
         });
       } catch (error) {
-        console.log("오류");
+        handleError(error);
       }
     },
   });
 };
 
 export const BugImg = () => {
+  const { handleError } = apiError();
   return useMutation<string, Error, { file: File }>({
     mutationFn: async (param) => {
       try {
@@ -32,7 +35,7 @@ export const BugImg = () => {
         const result = await instance.post(`/bug/upload`, formData);
         return result.data;
       } catch (error) {
-        console.log(error);
+        handleError(error);
         throw new Error("파일 업로드 중에 오류가 발생했습니다.");
       }
     },

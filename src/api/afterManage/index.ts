@@ -7,6 +7,7 @@ import {
   ClubList,
   Type,
 } from "../type";
+import apiError from "@/hook/errorHandling";
 
 export const GetClubList = (club: string) => {
   return useQuery<ClubList[]>({
@@ -19,12 +20,13 @@ export const GetClubList = (club: string) => {
 };
 
 export const FixStatus = () => {
+  const { handleError } = apiError();
   return useMutation<void, Error, ChangeStatus[]>({
     mutationFn: async (param) => {
       try {
         await instance.patch(`/attendance/modify`, param);
       } catch (error) {
-        console.log(error);
+        handleError(error);
       }
     },
   });
@@ -41,12 +43,13 @@ export const AllStudent = () => {
 };
 
 export const PostStudent = () => {
+  const { handleError } = apiError();
   return useMutation<void, Error, { student_num: string }[]>({
     mutationFn: async (param) => {
       try {
         await instance.post(`/after`, param);
       } catch (error) {
-        console.log(error);
+        handleError(error);
       }
     },
   });
@@ -63,6 +66,7 @@ export const GetAfterStudent = () => {
 };
 
 export const AfterStudentDelete = () => {
+  const { handleError } = apiError();
   return useMutation<void, Error, { id: string }>({
     mutationFn: async ({ id }) => {
       try {
@@ -72,7 +76,7 @@ export const AfterStudentDelete = () => {
           },
         });
       } catch (error) {
-        console.log(error);
+        handleError(error);
         throw new Error("Failed to delete student.");
       }
     },
@@ -80,12 +84,13 @@ export const AfterStudentDelete = () => {
 };
 
 export const CheckStatus = () => {
+  const { handleError } = apiError();
   return useMutation<void, Error, ChangeClub[]>({
     mutationFn: async (param) => {
       try {
         await instance.patch(`/attendance/modify`, param);
       } catch (error) {
-        console.log(error);
+        handleError(error);
       }
     },
   });
