@@ -132,6 +132,7 @@ const attendanceCheck = () => {
             state4={item.status9}
             state5={item.status10}
             after
+            class_name={item.classroom_name}
           />
         ))}
       </div>
