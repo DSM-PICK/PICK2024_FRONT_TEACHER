@@ -85,6 +85,7 @@ export interface AfterStudent {
   class_num: number;
   num: number;
   name: string;
+  classroom_name: string;
   status1: string;
   status2: string;
   status3: string;
