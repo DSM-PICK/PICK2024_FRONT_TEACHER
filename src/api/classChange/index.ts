@@ -5,7 +5,7 @@ import apiError from "@/hook/errorHandling";
 
 export const AcceptClassChange = (floor: number) => {
   return useQuery<FloorClass[]>({
-    queryKey: ["AcceptClassChange", floor], // floor를 queryKey에 추가
+    queryKey: ["AcceptClassChange", floor],
     queryFn: async () => {
       const response = await instance.get(
         `/class-room/floor?floor=${floor}&status=QUIET`

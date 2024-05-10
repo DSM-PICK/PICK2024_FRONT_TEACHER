@@ -13,6 +13,7 @@ interface NonReturnProp {
   after?: boolean;
   name: string;
   time?: number;
+  class_name?: string;
 }
 
 export const AfterList = ({
@@ -25,6 +26,7 @@ export const AfterList = ({
   id,
   onClick,
   name,
+  class_name,
 }: NonReturnProp) => {
   const Change = (item: string) => {
     switch (item) {
@@ -106,7 +108,16 @@ export const AfterList = ({
         className={`min-w-fit gap-2 flex justify-between w-full bg-white px-4 py-3 rounded-lg flex-col`}
       >
         <div className=" whitespace-nowrap min-w-fit gap-2 items-center flex justify-between w-full rounded-lg">
-          <div className=" text-sub-title4-M">{name}</div>
+          <div className=" flex whitespace-nowrap gap-2 items-center justify-between">
+            <div className=" text-sub-title4-M">{name}</div>
+            {class_name === "" ? (
+              ""
+            ) : (
+              <div className=" border border-primary-400 px-2 py-1 rounded-2xl bg-primary-400 text-body3 text-white">
+                {class_name}
+              </div>
+            )}
+          </div>
           <StatusDrop onChange={ClassCheck} state={Change(changeProp())} />
         </div>
       </div>
