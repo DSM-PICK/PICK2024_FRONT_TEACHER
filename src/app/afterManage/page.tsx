@@ -220,6 +220,7 @@ const AfterManage = () => {
               state3={item.status8}
               state4={item.status9}
               state5={item.status10}
+              class_name={item.classroom_name}
             />
           ))
         ) : (
@@ -244,6 +245,7 @@ const AfterManage = () => {
                             handleAcceptListClick(item.id, item.name)
                           }
                           time={selectClassTime}
+                          class_name={item.classroom_name}
                         />
                       );
                     })}
