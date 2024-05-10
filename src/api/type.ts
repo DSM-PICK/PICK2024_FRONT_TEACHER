@@ -37,6 +37,7 @@ export interface ClubList {
   grade: number;
   class_num: number;
   num: number;
+  classroom_name: string;
   status6: string;
   status7: string;
   status8: string;
