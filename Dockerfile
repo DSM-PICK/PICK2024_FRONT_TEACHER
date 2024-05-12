@@ -16,3 +16,4 @@ ENV NEXT_PUBLIC_API_KEY $BASE_URL
 EXPOSE 3000
 
 CMD ["yarn", "dev"]
+
