@@ -6,6 +6,7 @@ import Button from "@/components/button";
 import Dropdown from "@/components/dropdown";
 import NonReturn from "@/components/list/application";
 import Modal from "@/components/modal";
+import useAccepListSelection from "@/hook/handleAcceptListClick";
 import { getFullToday } from "@/util/date";
 import { getStudentString } from "@/util/util";
 import React, { useEffect, useState } from "react";
@@ -15,10 +16,10 @@ const OutAccept = () => {
   const [applicationData, setApplicationData] = useState<applicationOK[]>();
   const [selectGrade, setSelectGrade] = useState<number>(1);
   const [selectClass, setSelectClass] = useState<number>(1);
-  const [selectedStudents, setSelectedStudents] = useState<string[]>([]);
   const [acmodal, setAcModal] = useState<boolean>(false);
   const [nomodal, setNomodal] = useState<boolean>(false);
-  const [selectedStudentName, setSelectedStudentName] = useState<string[]>([]);
+  const { selectedStudents, selectedStudentName, handleAcceptListClick } =
+  useAccepListSelection();
   const { mutate: outAcceptMutate } = GetClass();
   const { mutate: AcceptMutate } = OutAcceptApi();
 
@@ -93,29 +94,6 @@ const OutAccept = () => {
       }
     } catch (error) {
       console.error("Out accept error", error);
-    }
-  };
-
-  const handleAcceptListClick = (id: string, name: string) => {
-    const isStudentSelected = selectedStudents.includes(id);
-    if (isStudentSelected) {
-      setSelectedStudents((prevSelectedStudents) =>
-        prevSelectedStudents.filter((selectedStudent) => selectedStudent !== id)
-      );
-      setSelectedStudentName((prevSelectedStudentName) =>
-        prevSelectedStudentName.filter(
-          (selectedStudentName) => selectedStudentName !== name
-        )
-      );
-    } else {
-      setSelectedStudents((prevSelectedStudents) => [
-        ...prevSelectedStudents,
-        id,
-      ]);
-      setSelectedStudentName((prevSelectedStudentName) => [
-        ...prevSelectedStudentName,
-        name,
-      ]);
     }
   };
 

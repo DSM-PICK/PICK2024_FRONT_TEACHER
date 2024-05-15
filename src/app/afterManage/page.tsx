@@ -13,6 +13,7 @@ import Dropdown from "@/components/dropdown";
 import AfterList from "@/components/list/afterManage";
 import AfterDelete from "@/components/list/delete";
 import Modal from "@/components/modal";
+import useAcceptListSelection from "@/hook/handleAcceptListClick";
 import { getStudentString, setStudentNum } from "@/util/util";
 import { useEffect, useState } from "react";
 
@@ -24,14 +25,13 @@ const AfterManage = () => {
   const [selectClassTime, setSelectClassTime] = useState<number>(8);
   const [selectClub, setSelectClub] = useState<string>("대동여지도");
   const [studentData, setStudentData] = useState<AfterStudent[]>();
-  const [selectedStudents, setSelectedStudents] = useState<string[]>([]);
-  const [selectedStudentName, setSelectedStudentName] = useState<string[]>([]);
   const { data: getClub } = GetClubList(selectClub);
   const { mutate: Post } = PostStudent();
   const { mutate: changeStatus } = FixStatus();
   const { data: getStudent } = GetAfterStudent();
   const { mutate: CulbCheck } = CheckStatus();
-
+  const { selectedStudents, selectedStudentName, handleAcceptListClick } =
+    useAcceptListSelection();
   const handleSaveClub = async () => {
     const updatedData: ChangeClub[] = [];
     studentData?.forEach((item) => {
@@ -114,28 +114,6 @@ const AfterManage = () => {
     Post(updatedData);
     location.reload();
     setMadal(false);
-  };
-
-  const handleAcceptListClick = (id: string, name: string) => {
-    const selectedIndex = selectedStudents.indexOf(id);
-    const isSelected = selectedIndex !== -1;
-    if (isSelected) {
-      setSelectedStudents((prevSelectedStudents) =>
-        prevSelectedStudents.filter((studentId) => studentId !== id)
-      );
-      setSelectedStudentName((prevSelectedStudentName) =>
-        prevSelectedStudentName.filter((studentName) => studentName !== name)
-      );
-    } else {
-      setSelectedStudents((prevSelectedStudents) => [
-        ...prevSelectedStudents,
-        id,
-      ]);
-      setSelectedStudentName((prevSelectedStudentName) => [
-        ...prevSelectedStudentName,
-        name,
-      ]);
-    }
   };
 
   useEffect(() => {
