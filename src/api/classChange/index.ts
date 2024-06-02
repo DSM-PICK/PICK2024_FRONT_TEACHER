@@ -4,13 +4,18 @@ import { FloorClass, changeClass } from "../type";
 import apiError from "@/hook/errorHandling";
 
 export const AcceptClassChange = (floor: number) => {
+  const { handleError } = apiError();
   return useQuery<FloorClass[]>({
     queryKey: ["AcceptClassChange", floor],
     queryFn: async () => {
-      const response = await instance.get(
-        `/class-room/floor?floor=${floor}&status=QUIET`
-      );
-      return response.data;
+      try {
+        const response = await instance.get(
+          `/class-room/floor?floor=${floor}&status=QUIET`
+        );
+        return response.data;
+      } catch (error) {
+        handleError(error);
+      }
     },
   });
 };
