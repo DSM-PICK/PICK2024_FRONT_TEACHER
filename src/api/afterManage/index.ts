@@ -10,11 +10,16 @@ import {
 import apiError from "@/hook/errorHandling";
 
 export const GetClubList = (club: string) => {
+  const { handleError } = apiError();
   return useQuery<ClubList[]>({
     queryKey: ["GetClubList", club],
     queryFn: async () => {
-      const response = await instance.get(`/attendance/club?club=${club}`);
-      return response.data;
+      try {
+        const response = await instance.get(`/attendance/club?club=${club}`);
+        return response.data;
+      } catch (error) {
+        handleError(error);
+      }
     },
   });
 };
@@ -33,11 +38,16 @@ export const FixStatus = () => {
 };
 
 export const AllStudent = () => {
+  const { handleError } = apiError();
   return useQuery<Type[]>({
     queryKey: ["AllStudent"],
     queryFn: async () => {
-      const response = await instance.get(`/after/search`);
-      return response.data;
+      try {
+        const response = await instance.get(`/after/search`);
+        return response.data;
+      } catch (error) {
+        handleError(error);
+      }
     },
   });
 };
@@ -56,11 +66,16 @@ export const PostStudent = () => {
 };
 
 export const GetAfterStudent = () => {
+  const { handleError } = apiError();
   return useQuery<AfterStudent[]>({
     queryKey: ["GetAfterStudent"],
     queryFn: async () => {
-      const response = await instance.get(`/after/all`);
-      return response.data;
+      try {
+        const response = await instance.get(`/after/all`);
+        return response.data;
+      } catch (error) {
+        handleError(error);
+      }
     },
   });
 };
