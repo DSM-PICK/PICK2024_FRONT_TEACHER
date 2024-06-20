@@ -17,12 +17,16 @@ const attendanceCheck = () => {
   const { mutate: attendanceSave } = AttendanceSave();
 
   const handleGradeChange = (selectedOption: number) => {
-    setStudents([]);
+    if (selectedGrade !== selectedOption) {
+      setStudents([]);
+    }
     setSelectedGrade(selectedOption);
   };
 
   const handleClassChange = (selectedOption: number) => {
-    setStudents([]);
+    if (selectedClass !== selectedOption) {
+      setStudents([]);
+    }
     setSelectedClass(selectedOption);
   };
 
