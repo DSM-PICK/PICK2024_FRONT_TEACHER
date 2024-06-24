@@ -10,14 +10,15 @@ import Modal from "@/components/modal";
 import { AcceptClass, AcceptClassChange } from "@/api/classChange";
 import { FloorClass } from "@/api/type";
 import ChangeClass from "@/components/classChange";
+import useAcceptListSelection from "@/hook/handleAcceptListClick";
 
 const ClassChange = () => {
   const [selectedFloor, setSelectedFloor] = useState<number>(2);
   const [data, setData] = useState<FloorClass[]>([]);
   const [accept, setAccept] = useState<boolean>(false);
   const [refuse, setRefuse] = useState<boolean>(false);
-  const [selectedStudents, setSelectedStudents] = useState<string[]>([]);
-  const [selectedStudentName, setSelectedStudentName] = useState<string[]>([]);
+  const { selectedStudents, selectedStudentName, handleAcceptListClick } =
+    useAcceptListSelection();
 
   const { data: AccpetMutate } = AcceptClassChange(selectedFloor);
   const { mutate: AccpetList } = AcceptClass();
@@ -46,28 +47,6 @@ const ClassChange = () => {
     }
   }, [AccpetMutate]);
 
-  const handleAcceptListClick = (id: string, name: string) => {
-    const isStudentSelected = selectedStudents.includes(id);
-    if (isStudentSelected) {
-      setSelectedStudents((prevSelectedStudents) =>
-        prevSelectedStudents.filter((selectedStudent) => selectedStudent !== id)
-      );
-      setSelectedStudentName((prevSelectedStudentName) =>
-        prevSelectedStudentName.filter(
-          (selectedStudentName) => selectedStudentName !== name
-        )
-      );
-    } else {
-      setSelectedStudents((prevSelectedStudents) => [
-        ...prevSelectedStudents,
-        id,
-      ]);
-      setSelectedStudentName((prevSelectedStudentName) => [
-        ...prevSelectedStudentName,
-        name,
-      ]);
-    }
-  };
   const nav = useRouter();
 
   const handleFloorChange = (selectedOption: number) => {
