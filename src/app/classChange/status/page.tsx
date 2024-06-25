@@ -12,7 +12,7 @@ import { changeClass } from "@/api/type";
 const ClassChangeOk = () => {
   const [floorData, setFloorData] = useState<changeClass[]>([]);
   const { mutate: changelistFloorMutate } = GetFloor();
-  const [selectedFloor, setSelectedFloor] = useState<number>(2);
+  const [selectedFloor, setSelectedFloor] = useState<number>(5);
 
   const handleFloorChange = (selectedOption: number) => {
     setSelectedFloor(selectedOption);
