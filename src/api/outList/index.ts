@@ -25,13 +25,16 @@ export const EarlyReturn = () => {
 
 export const ReturnSchool = () => {
   const { handleError } = apiError();
-  return useMutation<Error, void, { id: string }>({
-    mutationFn: async (param) => {
+  return useMutation<Error, void, string[]>({
+    mutationFn: async (...param) => {
       try {
-        const response = await instance.patch(
-          `/application/change/${param.id}`
-        );
-        return response.data;
+        console.log(param);
+        const { data } = await instance.patch(`/application/return`, ...param, {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        });
+        return data;
       } catch (error) {
         handleError(error);
       }
