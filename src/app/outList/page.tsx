@@ -65,7 +65,7 @@ const OutList = () => {
       <div className=" overflow-y-scroll gap-4 flex flex-col">
         {selectedTab ? (
           <>
-            {applicationOKData &&
+            {Array.isArray(applicationOKData) &&
               applicationOKData?.map((item, index) => (
                 <NonReturn
                   onClick={() => {
