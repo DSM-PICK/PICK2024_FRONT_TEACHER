@@ -13,7 +13,7 @@ import ChangeClass from "@/components/classChange";
 import useAcceptListSelection from "@/hook/handleAcceptListClick";
 
 const ClassChange = () => {
-  const [selectedFloor, setSelectedFloor] = useState<number>(2);
+  const [selectedFloor, setSelectedFloor] = useState<number>(5);
   const [data, setData] = useState<FloorClass[]>([]);
   const [accept, setAccept] = useState<boolean>(false);
   const [refuse, setRefuse] = useState<boolean>(false);
