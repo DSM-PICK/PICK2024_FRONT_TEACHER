@@ -12,7 +12,7 @@ interface DropdownProp {
 const Dropdown: React.FC<DropdownProp> = ({ type, onChange }) => {
   const [selectedGradeOption, setSelectedGradeOption] = useState<number>(1);
   const [selectedClassOption, setSelectedClassOption] = useState<number>(1);
-  const [selectedFloorOption, setSelectedFloorOption] = useState<number>(2);
+  const [selectedFloorOption, setSelectedFloorOption] = useState<number>(5);
   const [selectedClubOption, setSelectedClubOption] =
     useState<string>("세미나실 2-1(대동여지도)");
   const [selectedAllOption, setSelectedAllOption] = useState<number>(1);
@@ -96,6 +96,7 @@ const Dropdown: React.FC<DropdownProp> = ({ type, onChange }) => {
     { value: 2, label: "2층" },
     { value: 3, label: "3층" },
     { value: 4, label: "4층" },
+    { value: 5, label: "전체" },
   ];
 
   const AllOption = [
@@ -119,10 +120,16 @@ const Dropdown: React.FC<DropdownProp> = ({ type, onChange }) => {
   ];
 
   const clubOptions = [
+    { value: "자습", label: "3-1교실(자습)" },
     { value: "대동여지도", label: "세미나실 2-1(대동여지도)" },
     { value: "DMS", label: "세미나실 2-2(DMS)" },
     { value: "gram", label: "세미나실 2-3(gram)" },
+    { value: "Liear", label: "세미나실 2-4(Liear)" },
+    { value: "gram1", label: "3-2교실(gram)" },
+    { value: "EXIT", label: "소개1실(EXIT)" },
     { value: "Lift", label: "소개2실(Lift)" },
+    { value: "DMS3학년", label: "소개 3실(DMS 3학년)" },
+    { value: "자습", label: "2-1교실(자습)" },
     { value: "Log", label: "세미나실 3-1(Log)" },
     { value: "은하", label: "세미나실 3-2(은하)" },
     { value: "PiCK", label: "세미나실 3-3(PiCK)" },
@@ -131,7 +138,7 @@ const Dropdown: React.FC<DropdownProp> = ({ type, onChange }) => {
     { value: "TeamQSS", label: "세미나실 4-1(TeamQSS)" },
     { value: "NoNamed", label: "세미나실 4-2(NoNamed)" },
     { value: "Modeep", label: "세미나실 4-3(Modeep)" },
-    { value: "자습", label: "자습" },
+    { value: "자습", label: "1-1교실(자습)" },
   ];
 
   const classTimeOption = [
@@ -171,7 +178,9 @@ const Dropdown: React.FC<DropdownProp> = ({ type, onChange }) => {
           : type === "class"
           ? `${selectedClassOption}반`
           : type === "floor"
-          ? `${selectedFloorOption}층`
+          ? selectedFloorOption === 5
+            ? `전체`
+            : `${selectedFloorOption}층`
           : type === "all"
           ? selectedAllOption === 5
             ? `전체`
