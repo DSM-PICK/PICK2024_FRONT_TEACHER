@@ -19,12 +19,13 @@ const OutAccept = () => {
   const [acmodal, setAcModal] = useState<boolean>(false);
   const [nomodal, setNomodal] = useState<boolean>(false);
   const { selectedStudents, selectedStudentName, handleAcceptListClick } =
-  useAccepListSelection();
+    useAccepListSelection();
   const { mutate: outAcceptMutate } = GetClass();
   const { mutate: AcceptMutate } = OutAcceptApi();
 
   useEffect(() => {
     AcceptDataList();
+    setApplicationData([]);
   }, [selectedTab]);
 
   useEffect(() => {
