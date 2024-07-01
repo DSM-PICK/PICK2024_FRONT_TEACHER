@@ -15,7 +15,7 @@ const Dropdown: React.FC<DropdownProp> = ({ type, onChange }) => {
   const [selectedFloorOption, setSelectedFloorOption] = useState<number>(5);
   const [selectedClubOption, setSelectedClubOption] =
     useState<string>("세미나실 2-1(대동여지도)");
-  const [selectedAllOption, setSelectedAllOption] = useState<number>(1);
+  const [selectedAllOption, setSelectedAllOption] = useState<number>(5);
   const [selectedClassTime, setSelectedClassTime] = useState<number>(8);
   const [isDropdownVisible, setIsDropdownVisible] = useState<boolean>(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
@@ -83,7 +83,7 @@ const Dropdown: React.FC<DropdownProp> = ({ type, onChange }) => {
   useEffect(() => {
     const grade = parseInt(localStorage.getItem("grade") || "1", 10);
     const class_num = parseInt(localStorage.getItem("class_num") || "1", 10);
-    const setgrade = grade === 0 ? 1 : grade;
+    const setgrade = grade === 0 ? 5 : grade;
     const setclass_num = class_num === 0 ? 1 : class_num;
     if (type === "all") {
       setSelectedAllOption(setgrade);
