@@ -14,8 +14,8 @@ import React, { useEffect, useState } from "react";
 const OutAccept = () => {
   const [selectedTab, setSelectedTab] = useState<boolean>(true);
   const [applicationData, setApplicationData] = useState<applicationOK[]>();
-  const [selectGrade, setSelectGrade] = useState<number>(1);
-  const [selectClass, setSelectClass] = useState<number>(1);
+  const [selectGrade, setSelectGrade] = useState<number>(5);
+  const [selectClass, setSelectClass] = useState<number>(5);
   const [acmodal, setAcModal] = useState<boolean>(false);
   const [nomodal, setNomodal] = useState<boolean>(false);
   const { selectedStudents, selectedStudentName, handleAcceptListClick } =
@@ -35,8 +35,8 @@ const OutAccept = () => {
   useEffect(() => {
     const grade = parseInt(localStorage.getItem("grade") || "1", 10);
     const class_num = parseInt(localStorage.getItem("class_num") || "1", 10);
-    const setgrade = grade === 0 ? 1 : grade;
-    const setclass_num = class_num === 0 ? 1 : class_num;
+    const setgrade = grade === 0 ? 5 : grade;
+    const setclass_num = class_num === 0 ? 5 : class_num;
     setSelectGrade(setgrade);
     setSelectClass(setclass_num);
   }, []);
