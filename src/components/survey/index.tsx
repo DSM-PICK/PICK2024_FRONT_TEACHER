@@ -44,7 +44,7 @@ const Survey = ({ onClick }: SurveyProp) => {
               checked={isChecked}
               onChange={handleCheckboxChange}
             />
-            <label htmlFor="check" className=" select-none">
+            <label htmlFor="check" className=" select-none ml-1">
               다시 보지 않기
             </label>
           </div>
