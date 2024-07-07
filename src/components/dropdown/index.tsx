@@ -6,10 +6,11 @@ import downarrow from "@/assets/svg/downarrow.svg";
 
 interface DropdownProp {
   type: "grade" | "class" | "floor" | "classTime" | "club" | "all";
+  homeRoom?: boolean;
   onChange: (selectedOption: any, type: string) => void;
 }
 
-const Dropdown: React.FC<DropdownProp> = ({ type, onChange }) => {
+const Dropdown: React.FC<DropdownProp> = ({ type, onChange, homeRoom }) => {
   const [selectedGradeOption, setSelectedGradeOption] = useState<number>(1);
   const [selectedClassOption, setSelectedClassOption] = useState<number>(1);
   const [selectedFloorOption, setSelectedFloorOption] = useState<number>(5);
@@ -81,15 +82,17 @@ const Dropdown: React.FC<DropdownProp> = ({ type, onChange }) => {
   };
 
   useEffect(() => {
-    const grade = parseInt(localStorage.getItem("grade") || "1", 10);
-    const class_num = parseInt(localStorage.getItem("class_num") || "1", 10);
-    const setgrade = grade === 0 ? 5 : grade;
-    const setclass_num = class_num === 0 ? 1 : class_num;
-    if (type === "all") {
-      setSelectedAllOption(setgrade);
+    if (homeRoom) {
+      const grade = parseInt(localStorage.getItem("grade") || "1", 10);
+      const class_num = parseInt(localStorage.getItem("class_num") || "1", 10);
+      const setgrade = grade === 0 ? 5 : grade;
+      const setclass_num = class_num === 0 ? 1 : class_num;
+      if (type === "all") {
+        setSelectedAllOption(setgrade);
+      }
+      setSelectedGradeOption(setgrade);
+      setSelectedClassOption(setclass_num);
     }
-    setSelectedGradeOption(setgrade);
-    setSelectedClassOption(setclass_num);
   }, []);
 
   const floorOptions = [

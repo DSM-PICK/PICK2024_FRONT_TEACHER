@@ -186,8 +186,12 @@ const OutAccept = () => {
       Dropdown={
         <div className=" flex w-full justify-between min-w-fit items-center gap-1">
           <div className=" flex gap-2">
-            <Dropdown type="all" onChange={handleGradeChange} />
-            <Dropdown type="class" onChange={handleClassChange} />
+            <Dropdown type="all" onChange={handleGradeChange} homeRoom={true} />
+            <Dropdown
+              type="class"
+              onChange={handleClassChange}
+              homeRoom={true}
+            />
           </div>
           <div className=" flex gap-2 w-32">
             <Button
