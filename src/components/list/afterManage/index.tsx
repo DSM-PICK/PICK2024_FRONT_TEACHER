@@ -110,7 +110,7 @@ export const AfterList = ({
         <div className=" whitespace-nowrap min-w-fit gap-2 items-center flex justify-between w-full rounded-lg">
           <div className=" flex whitespace-nowrap gap-2 items-center justify-between">
             <div className=" text-sub-title4-M">{name}</div>
-            {class_name === "" || class_name === "null" ? (
+            {class_name === "" ? (
               ""
             ) : (
               <div className=" border border-primary-400 px-2 py-1 rounded-2xl bg-primary-400 text-body3 text-white">
