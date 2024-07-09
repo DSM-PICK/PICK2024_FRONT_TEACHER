@@ -74,3 +74,23 @@ export const OutAcceptApi = () => {
     },
   });
 };
+
+export const OutFloorList = () => {
+  const { handleError } = apiError();
+  return useMutation<
+    applicationOK[],
+    Error,
+    { floor: number; status: "OK" | "NO" | "QUIET" }
+  >({
+    mutationFn: async (param) => {
+      try {
+        const { data } = await instance.get(
+          `/application/floor?floor=${param.floor}&status=${param.status}`
+        );
+        return data;
+      } catch (error) {
+        handleError(error);
+      }
+    },
+  });
+};
