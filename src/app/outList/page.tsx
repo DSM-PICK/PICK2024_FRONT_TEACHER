@@ -1,7 +1,14 @@
 "use client";
-import { Application, EarlyReturn, ReturnSchool } from "@/api/outList";
+import {
+  Application,
+  EarlyReturn,
+  OutFloorList,
+  ReturnSchool,
+} from "@/api/outList";
+import { applicationOK } from "@/api/type";
 import BackGround from "@/components/background";
 import Button from "@/components/button";
+import Dropdown from "@/components/dropdown";
 import NonReturn from "@/components/list/application";
 import Modal from "@/components/modal";
 import useAcceptListSelection from "@/hook/handleAcceptListClick";
@@ -14,14 +21,31 @@ const OutList = () => {
   const { selectedStudents, selectedStudentName, handleAcceptListClick } =
     useAcceptListSelection();
   const [modal, setModal] = useState<boolean>(false);
+  const [selectedFloor, setSelectedFloor] = useState<number>(5);
+  const [data, setData] = useState<applicationOK[]>([]);
 
-  const { data: applicationOKData } = Application();
+  const { mutate: floorData } = OutFloorList();
   const { data: earlyReturnData } = EarlyReturn();
   const { mutate: ReturnApplication } = ReturnSchool();
+
+  const GetFloorData = async () => {
+    await floorData(
+      { floor: selectedFloor, status: "OK" },
+      {
+        onSuccess: (data) => {
+          setData(data);
+        },
+      }
+    );
+  };
 
   const onClickTab = (tab: boolean) => {
     setSelectedTab(tab);
   };
+
+  useEffect(() => {
+    GetFloorData();
+  }, [selectedFloor]);
 
   const Return = () => {
     ReturnApplication(selectedStudents, {
@@ -35,6 +59,10 @@ const OutList = () => {
     });
   };
 
+  const handleFloorChange = (selectedOption: number) => {
+    setSelectedFloor(selectedOption);
+  };
+
   return (
     <BackGround
       title="외출자 목록"
@@ -46,7 +74,9 @@ const OutList = () => {
       Dropdown={
         selectedTab && (
           <div className=" flex justify-between items-center">
-            <div></div>
+            <div>
+              <Dropdown onChange={handleFloorChange} type="floor" />
+            </div>
             <div className=" flex gap-2 w-32">
               <Button
                 colorType="primary"
@@ -65,20 +95,19 @@ const OutList = () => {
       <div className=" overflow-y-scroll gap-4 flex flex-col">
         {selectedTab ? (
           <>
-            {Array.isArray(applicationOKData) &&
-              applicationOKData?.map((item, index) => (
-                <NonReturn
-                  onClick={() => {
-                    handleAcceptListClick(item.id, item.username);
-                  }}
-                  id={item.id}
-                  type="application"
-                  key={index}
-                  returnTime={item.end_time}
-                  name={getStudentString(item)}
-                  reason={item.reason}
-                />
-              ))}
+            {data?.map((item, index) => (
+              <NonReturn
+                onClick={() => {
+                  handleAcceptListClick(item.id, item.username);
+                }}
+                id={item.id}
+                type="application"
+                key={index}
+                returnTime={item.end_time}
+                name={getStudentString(item)}
+                reason={item.reason}
+              />
+            ))}
           </>
         ) : (
           earlyReturnData?.map((item, index) => (
