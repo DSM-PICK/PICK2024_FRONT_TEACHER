@@ -51,7 +51,7 @@ export const AfterList = ({
 
   useEffect(() => {
     setStatusList([state1, state2, state3, state4, state5]);
-  }, [state1, state2, state3]);
+  }, [state1, state2, state3, state4, state5]);
 
   useEffect(() => {
     localStorage.setItem(id, JSON.stringify(statusList));
@@ -59,7 +59,10 @@ export const AfterList = ({
 
   const handleChange = (index: number, newState: string) => {
     const newStatusList = [...statusList];
-    newStatusList[index] = newState;
+    for (let i = index; i < newStatusList.length; i++) {
+      console.log(newStatusList);
+      newStatusList[i] = newState;
+    }
     setStatusList(newStatusList);
   };
 
@@ -107,13 +110,13 @@ export const AfterList = ({
       <div
         className={`min-w-fit gap-2 flex justify-between w-full bg-white px-4 py-3 rounded-lg flex-col`}
       >
-        <div className=" whitespace-nowrap min-w-fit gap-2 items-center flex justify-between w-full rounded-lg">
-          <div className=" flex whitespace-nowrap gap-2 items-center justify-between">
-            <div className=" text-sub-title4-M">{name}</div>
+        <div className="whitespace-nowrap min-w-fit gap-2 items-center flex justify-between w-full rounded-lg">
+          <div className="flex whitespace-nowrap gap-2 items-center justify-between">
+            <div className="text-sub-title4-M">{name}</div>
             {class_name === "" ? (
               ""
             ) : (
-              <div className=" border border-primary-400 px-2 py-1 rounded-2xl bg-primary-400 text-body3 text-white">
+              <div className="border border-primary-400 px-2 py-1 rounded-2xl bg-primary-400 text-body3 text-white">
                 {class_name}
               </div>
             )}
