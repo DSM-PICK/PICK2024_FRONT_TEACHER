@@ -60,7 +60,6 @@ export const AfterList = ({
   const handleChange = (index: number, newState: string) => {
     const newStatusList = [...statusList];
     for (let i = index; i < newStatusList.length; i++) {
-      console.log(newStatusList);
       newStatusList[i] = newState;
     }
     setStatusList(newStatusList);

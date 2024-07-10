@@ -30,8 +30,7 @@ const AfterManage = () => {
   const { mutate: changeStatus } = FixStatus();
   const { data: getStudent } = GetAfterStudent();
   const { mutate: CulbCheck } = CheckStatus();
-  const { selectedStudents, selectedStudentName, handleAcceptListClick } =
-    useAcceptListSelection();
+  const { handleAcceptListClick } = useAcceptListSelection();
   const handleSaveClub = async () => {
     const updatedData: ChangeClub[] = [];
     studentData?.forEach((item) => {
