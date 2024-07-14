@@ -5,7 +5,7 @@ import apiError from "@/hook/errorHandling";
 interface BugProp {
   title: string;
   content: string;
-  file_name: string;
+  file_name: string[];
 }
 
 export const BugPost = () => {
@@ -16,6 +16,7 @@ export const BugPost = () => {
         await instance.post(`/bug/message`, {
           title: param.title,
           content: param.content,
+          model: "WEB",
           file_name: param.file_name,
         });
       } catch (error) {
