@@ -5,7 +5,7 @@ import apiError from "@/hook/errorHandling";
 interface BugProp {
   title: string;
   content: string;
-  file_name: string[];
+  file_name: string;
 }
 
 export const BugPost = () => {
