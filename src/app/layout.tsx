@@ -23,6 +23,10 @@ export default function RootLayout({
     <html lang="ko">
       <Head>
         <link rel="icon" href={metadata.icons.icon} />
+        <meta
+          name="google-site-verification"
+          content="2AlElbziBNIvwaiKInHFO5I2Xi5_kIVB0X7HH7F3NGg"
+        />
         <title>{metadata.title}</title>
         <meta name="description" content={metadata.description} />
       </Head>
