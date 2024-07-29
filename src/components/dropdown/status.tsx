@@ -41,7 +41,10 @@ const AfterCheck: React.FC<AfterCheckProp> = ({ state, onChange, type }) => {
       case "외출":
         return "border border-primary-500 text-primary-500";
       case "이동":
-        return "border border border-tertiary-300 text-tertiary-300";
+        return "border border-tertiary-300 text-tertiary-300";
+      case "취업":
+      case "현체":
+        return "border border-neutral-500 text-neutral-500";
       default:
         return "";
     }
@@ -75,9 +78,9 @@ const AfterCheck: React.FC<AfterCheckProp> = ({ state, onChange, type }) => {
     setIsDropdownVisible(false);
   };
 
-  return state === "현체" ? (
+  return state === "현체" || state === "취업" ? (
     <div
-      className={`w-full h-max px-4 py-1  text-label1 text-neutral-400 rounded-lg bg-white`}
+      className={`box-border group px-4 py-1 bg-white rounded-lg text-Button-ES fle x justify-between items-center ${style()}`}
     >
       {selectedOption}
     </div>
