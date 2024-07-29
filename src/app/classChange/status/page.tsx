@@ -25,14 +25,17 @@ const ClassChangeOk = () => {
   const ChangeClassDataFloor = async () => {
     try {
       if (selectedFloor) {
-        await changelistFloorMutate(selectedFloor, {
-          onSuccess: (data) => {
-            setFloorData(data);
-          },
-          onError: (error) => {
-            console.log(error);
-          },
-        });
+        await changelistFloorMutate(
+          { floor: selectedFloor },
+          {
+            onSuccess: (data) => {
+              setFloorData(data);
+            },
+            onError: (error) => {
+              console.log(error);
+            },
+          }
+        );
       }
     } catch (error) {
       console.log(error);
