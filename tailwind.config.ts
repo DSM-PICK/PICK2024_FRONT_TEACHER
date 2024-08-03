@@ -347,6 +347,7 @@ const config: Config = {
       },
       spacing: {
         "4%": "4%",
+        "40%": "44%",
       },
     },
   },
