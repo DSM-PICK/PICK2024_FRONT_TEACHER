@@ -10,6 +10,7 @@ export const metadata = {
   icons: {
     icon: "/favicon.svg",
   },
+  token: "2AlElbziBNIvwaiKInHFO5I2Xi5_kIVB0X7HH7F3NGg",
 };
 
 const NotoSans = Noto_Sans_KR({ subsets: ["latin"] });
@@ -23,6 +24,7 @@ export default function RootLayout({
     <html lang="ko">
       <Head>
         <link rel="icon" href={metadata.icons.icon} />
+        <meta name="google-site-verification" content={metadata.token} />
         <title>{metadata.title}</title>
         <meta name="description" content={metadata.description} />
       </Head>

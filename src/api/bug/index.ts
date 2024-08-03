@@ -16,6 +16,7 @@ export const BugPost = () => {
         await instance.post(`/bug/message`, {
           title: param.title,
           content: param.content,
+          model: "WEB",
           file_name: param.file_name,
         });
       } catch (error) {
