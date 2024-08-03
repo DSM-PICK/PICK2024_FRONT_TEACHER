@@ -1,11 +1,11 @@
-import { useMutation, useQuery } from "@tanstack/react-query";
+import { useMutation } from "@tanstack/react-query";
 import { instance } from "..";
 import apiError from "@/hook/errorHandling";
 
 interface BugProp {
   title: string;
   content: string;
-  file_name: string;
+  file_name: string[];
 }
 
 export const BugPost = () => {
@@ -28,11 +28,13 @@ export const BugPost = () => {
 
 export const BugImg = () => {
   const { handleError } = apiError();
-  return useMutation<string, Error, { file: File }>({
+  return useMutation<string[], Error, { file: File[] }>({
     mutationFn: async (param) => {
       try {
         const formData = new FormData();
-        formData.append("file", param.file);
+        param.file.forEach((file) => {
+          formData.append("file", file);
+        });
         const result = await instance.post(`/bug/upload`, formData);
         return result.data;
       } catch (error) {

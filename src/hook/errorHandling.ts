@@ -13,9 +13,7 @@ const apiError = () => {
     alert("400 잘못된 요청입니다");
   };
 
-  const handle401: ErrorHandler = () => {
-    router.push("login");
-  };
+  const handle401: ErrorHandler = () => {};
 
   const handle403: ErrorHandler = () => {
     alert("403 권한이 없습니다");
