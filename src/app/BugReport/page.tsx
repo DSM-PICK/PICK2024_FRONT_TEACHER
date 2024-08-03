@@ -5,11 +5,13 @@ import Input from "@/components/input";
 import TextArea from "@/components/input/textarea";
 import Button from "@/components/button";
 import { BugPost, BugImg } from "@/api/bug/index";
+import ImgModal from "@/components/modal/imgModal";
+import BugReportImg from "@/assets/svg/bugreport.svg";
 
 interface bugProp {
   title: string;
   content: string;
-  file_name: string;
+  file_name: string[];
 }
 
 const BugReport = () => {
@@ -18,41 +20,31 @@ const BugReport = () => {
   const [data, setData] = useState<bugProp>({
     title: "",
     content: "",
-    file_name: "",
+    file_name: [],
   });
-  const [filename, setFilename] = useState<string>("");
+  const [modal, setModal] = useState<boolean>(false);
 
   const handleContent = ({ text, name }: { text: string; name: string }) => {
     setData({ ...data, [name]: text });
   };
 
-  const handleFileChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
-    const selectedFile = e.currentTarget.files?.[0];
-    if (selectedFile) {
-      try {
-        await BugImgMutate(
-          { file: selectedFile },
-          {
-            onSuccess: (data) => {
-              setFilename(data);
-            },
-            onError: (error) => {
-              alert(error.message);
-            },
-          }
-        );
-      } catch (error) {
-        console.log(error);
-      }
+  const handleImgUpload = async (images: File[]) => {
+    try {
+      await BugImgMutate(
+        { file: images },
+        {
+          onSuccess: (data) => {
+            setData((prevData) => ({
+              ...prevData,
+              file_name: data,
+            }));
+          },
+        }
+      );
+    } catch (error) {
+      console.error("Upload failed:", error);
     }
   };
-
-  useEffect(() => {
-    setData({
-      ...data,
-      file_name: filename,
-    });
-  }, [filename]);
 
   const Bug = async () => {
     await BugPostMutate(data, {
@@ -61,7 +53,7 @@ const BugReport = () => {
         setData({
           title: "",
           content: "",
-          file_name: filename ? filename : "",
+          file_name: [],
         });
       },
       onError: () => {
@@ -98,9 +90,36 @@ const BugReport = () => {
             />
           </div>
           <div className="flex flex-col gap-2">
-            <div className="text-sub-title4-M">버그 사진을 첨부해주세요</div>
-            <input type="file" onChange={handleFileChange} />
+            <div className="mb-11">
+              <>
+                <p>버그 사진을 첨부해주세요</p>
+                <label
+                  htmlFor="file-input"
+                  className="cursor-pointer flex flex-col p-8 justify-center items-center w-full h-max rounded-md bg-neutral-900 text-gray-500 mb-9"
+                  onClick={() => {
+                    setModal(true);
+                  }}
+                >
+                  <img src={BugReportImg.src} alt="bug report icon" />
+                  <p>사진을 첨부해주세요</p>
+                </label>
+                <div
+                  id="file-input"
+                  className="hidden"
+                  onChange={() => {
+                    setModal(!modal);
+                  }}
+                />
+              </>
+            </div>
           </div>
+          <ImgModal
+            onClick={handleImgUpload}
+            isOpen={modal}
+            onClose={() => {
+              setModal(!modal);
+            }}
+          />
         </div>
         <Button onClick={Bug} buttonSize="full" colorType="primary">
           버그 제보하기
