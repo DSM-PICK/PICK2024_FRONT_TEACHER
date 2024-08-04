@@ -59,10 +59,11 @@ const Login = () => {
       router.push("/login");
     }
   };
-  
+
   useEffect(() => {
     cookie.remove("access_token");
     cookie.remove("refresh_token");
+    localStorage.clear();
   }, []);
 
   const BtnColor = () => {
