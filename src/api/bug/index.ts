@@ -38,7 +38,7 @@ export const BugImg = () => {
         const result = await instance.post(`/bug/upload`, formData);
         return result.data;
       } catch (error) {
-        handleError(error);
+        alert("이미지 용량이 너무 큽니다");
         throw new Error("파일 업로드 중에 오류가 발생했습니다.");
       }
     },
