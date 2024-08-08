@@ -38,6 +38,7 @@ const BugReport = () => {
               ...prevData,
               file_name: data,
             }));
+            alert("이미지가 추가되었습니다");
           },
         }
       );
