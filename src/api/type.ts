@@ -105,6 +105,7 @@ export interface changeClass {
   grade: number;
   id: string;
   num: number;
+  move: string;
   user_id: string;
   username: string;
 }
