@@ -27,7 +27,6 @@ export const BugPost = () => {
 };
 
 export const BugImg = () => {
-  const { handleError } = apiError();
   return useMutation<string[], Error, { file: File[] }>({
     mutationFn: async (param) => {
       try {
