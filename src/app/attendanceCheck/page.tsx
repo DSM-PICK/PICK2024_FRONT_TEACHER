@@ -1,32 +1,31 @@
 "use client";
-import { AttendanceSave, GetStudentsAttendance } from "@/api/attendanceCheck";
-import { AttendanceChack, ClubList } from "@/api/type";
+import { GetStudentsAttendance } from "@/api/attendanceCheck";
+import { FixStatus } from "@/api/afterManage";
 import BackGround from "@/components/background";
 import Button from "@/components/button";
 import Dropdown from "@/components/dropdown";
 import AfterList from "@/components/list/afterManage";
 import { getStudentString } from "@/util/util";
-import { useEffect, useState } from "react";
+import { useState } from "react";
+import useAttendanceStore from "@/stroes/useChangeStatus";
 
 const attendanceCheck = () => {
-  const [students, setStudents] = useState<ClubList[]>([]);
   const [selectClassTime, setSelectClassTime] = useState<number>(8);
   const [selectedGrade, setSelectedGrade] = useState<number>(1);
   const [selectedClass, setSelectedClass] = useState<number>(1);
-  const { mutate: getStudentsAttendance } = GetStudentsAttendance();
-  const { mutate: attendanceSave } = AttendanceSave();
+  const { data: GetStudent, refetch: ReGetStudent } = GetStudentsAttendance(
+    selectedGrade,
+    selectedClass,
+    selectClassTime
+  );
+  const { mutate: attendanceSave } = FixStatus();
+  const { students } = useAttendanceStore();
 
   const handleGradeChange = (selectedOption: number) => {
-    if (selectedGrade !== selectedOption) {
-      setStudents([]);
-    }
     setSelectedGrade(selectedOption);
   };
 
   const handleClassChange = (selectedOption: number) => {
-    if (selectedClass !== selectedOption) {
-      setStudents([]);
-    }
     setSelectedClass(selectedOption);
   };
 
@@ -34,71 +33,17 @@ const attendanceCheck = () => {
     setSelectClassTime(selectedOption);
   };
 
-  const Check = async () => {
-    try {
-      await getStudentsAttendance(
-        {
-          grade: selectedGrade,
-          class: selectedClass,
-        },
-        {
-          onSuccess: (data) => {
-            setStudents(data);
-          },
-        }
-      );
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
   const AttandenceSaveFn = async () => {
-    const updatedData: AttendanceChack[] = [];
-    students?.forEach((item) => {
-      const localData = localStorage.getItem(item.id);
-      if (localData) {
-        const parsedData = JSON.parse(localData);
-        const studentData = {
-          user_id: item.id,
-          status_list: [
-            parsedData[0],
-            parsedData[1],
-            parsedData[2],
-            parsedData[3],
-            parsedData[4],
-          ],
-        };
-        updatedData.push(studentData);
-      }
-    });
-
-    try {
-      await attendanceSave(updatedData, {
+    attendanceSave(
+      { period: selectClassTime, data: students },
+      {
         onSuccess: () => {
-          alert("저장되었습니다");
-          location.reload();
+          alert("변경되었습니다");
+          ReGetStudent();
         },
-        onError: (error) => {
-          alert(error.name);
-        },
-      });
-      updatedData.forEach((item) => {
-        localStorage.setItem(item.user_id, JSON.stringify(item.status_list));
-      });
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
-  useEffect(() => {
-    const keys = Object.keys(localStorage);
-    keys.forEach((key) => {
-      if (key.includes("-")) {
-        localStorage.removeItem(key);
       }
-    });
-    Check();
-  }, [selectedGrade, selectedClass]);
+    );
+  };
 
   return (
     <BackGround
@@ -125,17 +70,12 @@ const attendanceCheck = () => {
       TabOnclick={() => {}}
     >
       <div className=" flex flex-col gap-4 h-full">
-        {students?.map((item, index) => (
+        {GetStudent?.map((item, index) => (
           <AfterList
             key={index}
-            time={selectClassTime}
             name={getStudentString(item)}
             id={item.id}
-            state1={item.status6}
-            state2={item.status7}
-            state3={item.status8}
-            state4={item.status9}
-            state5={item.status10}
+            state={item.status}
             after
             class_name={item.classroom_name}
           />

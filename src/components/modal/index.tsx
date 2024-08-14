@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import Button from "../button";
 import AutoInput from "../input/auto";
 
@@ -29,15 +29,12 @@ const Modal: React.FC<ModalProps> = ({
   onConfirm,
   name,
 }) => {
-  const [inputValue, setInputValue] = useState("");
-
   const [addstudent, setAddstudent] = useState({
     student: "",
   });
 
   const AutohandleChange = ({ text, name }: ChangeProps) => {
     setAddstudent({ ...addstudent, [name]: text });
-    setInputValue(text);
   };
 
   const renderButtons = () => {

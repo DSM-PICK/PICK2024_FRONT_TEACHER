@@ -37,22 +37,18 @@ export interface ClubList {
   grade: number;
   class_num: number;
   num: number;
+  status: string;
   classroom_name: string;
-  status6: string;
-  status7: string;
-  status8: string;
-  status9: string;
-  status10: string;
 }
 
 export interface AttendanceChack {
   user_id: string;
-  status_list: string[];
+  status: string;
 }
 
 export interface ChangeStatus {
   user_id: string;
-  status_list: string[];
+  status: string;
 }
 
 export interface FloorClass {
@@ -86,11 +82,7 @@ export interface AfterStudent {
   num: number;
   name: string;
   classroom_name: string;
-  status1: string;
-  status2: string;
-  status3: string;
-  status4: string;
-  status5: string;
+  status: string;
 }
 
 export interface ChangeClub {
