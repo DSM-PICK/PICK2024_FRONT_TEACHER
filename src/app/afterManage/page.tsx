@@ -1,6 +1,5 @@
 "use client";
 import {
-  CheckStatus,
   FixStatus,
   GetAfterStudent,
   GetClubList,
@@ -14,87 +13,36 @@ import AfterList from "@/components/list/afterManage";
 import AfterDelete from "@/components/list/delete";
 import Modal from "@/components/modal";
 import useAcceptListSelection from "@/hook/handleAcceptListClick";
+import useAttendanceStore from "@/stroes/useChangeStatus";
 import { getStudentString, setStudentNum } from "@/util/util";
-import { useEffect, useState } from "react";
+import { useActionState, useEffect, useState } from "react";
 
 const AfterManage = () => {
   const [edit, setEdit] = useState<boolean>(false);
   const [modal, setMadal] = useState<boolean>(false);
-  const [clubList, setClubList] = useState<ClubList[]>([]);
   const [selectedTab, setSelectedTab] = useState<boolean>(true);
   const [selectClassTime, setSelectClassTime] = useState<number>(8);
   const [selectClub, setSelectClub] = useState<string>("대동여지도");
   const [studentData, setStudentData] = useState<AfterStudent[]>();
-  const { data: getClub } = GetClubList(selectClub);
+  const { data: getClub } = GetClubList(selectClub, selectClassTime);
+  const [data, setData] = useState([]);
   const { mutate: Post } = PostStudent();
   const { mutate: changeStatus } = FixStatus();
-  const { data: getStudent } = GetAfterStudent();
-  const { mutate: CulbCheck } = CheckStatus();
+  const { data: getStudent, refetch: ReGetStudent } = GetAfterStudent();
   const { handleAcceptListClick } = useAcceptListSelection();
-  const handleSaveClub = async () => {
-    const updatedData: ChangeClub[] = [];
-    studentData?.forEach((item) => {
-      const localData = localStorage.getItem(item.id);
-      if (localData) {
-        const parsedData = JSON.parse(localData);
-        const studentData = {
-          user_id: item.id,
-          status_list: [
-            parsedData[0],
-            parsedData[1],
-            parsedData[2],
-            parsedData[3],
-            parsedData[4],
-          ],
-        };
-        updatedData.push(studentData);
-      }
-    });
+  const { getStatus, students } = useAttendanceStore();
 
-    try {
-      await changeStatus(updatedData, {
+  const handleSaveClub = async () => {
+    changeStatus(
+      { period: selectClassTime, data: students },
+      {
         onSuccess: () => {
           alert("상태가 변경되었습니다");
+          ReGetStudent();
         },
-        onError: (error) => {
-          alert(error.name);
-        },
-      });
-    } catch (error) {
-      updatedData.forEach((item) => {
-        localStorage.setItem(item.user_id, JSON.stringify(item.status_list));
-      });
-      console.log(error);
-    }
-  };
-
-  useEffect(() => {
-    if (getStudent) {
-      setStudentData(getStudent);
-    }
-  }, [getStudent]);
-
-  const handleSaveModalConfirm = () => {
-    setEdit(false);
-    const updatedData: ChangeStatus[] = [];
-    clubList?.forEach((item) => {
-      const localData = localStorage.getItem(item.id);
-      if (localData) {
-        const parsedData = JSON.parse(localData);
-        const studentData = {
-          user_id: item.id,
-          status_list: [
-            parsedData[0],
-            parsedData[1],
-            parsedData[2],
-            parsedData[3] || "ATTENDANCE",
-            parsedData[4] || "ATTENDANCE",
-          ],
-        };
-        updatedData.push(studentData);
       }
-    });
-    CulbCheck(updatedData);
+    );
+    setEdit(false);
   };
 
   const onClickSave = () => {
@@ -114,13 +62,6 @@ const AfterManage = () => {
     location.reload();
     setMadal(false);
   };
-
-  useEffect(() => {
-    setClubList([]);
-    if (getClub) {
-      setClubList(getClub);
-    }
-  }, [getClub]);
 
   useEffect(() => {
     const keys = Object.keys(localStorage);
@@ -186,17 +127,12 @@ const AfterManage = () => {
     >
       <div className="overflow-y-scroll h-80 flex flex-col gap-4">
         {selectedTab ? (
-          clubList.map((item, index) => (
+          getClub?.map((item, index) => (
             <AfterList
               key={index}
-              time={selectClassTime}
               name={getStudentString(item)}
               id={item.id}
-              state1={item.status6}
-              state2={item.status7}
-              state3={item.status8}
-              state4={item.status9}
-              state5={item.status10}
+              state={item.status}
               class_name={item.classroom_name}
             />
           ))
@@ -206,22 +142,17 @@ const AfterManage = () => {
               <div className=" flex flex-col gap-8 w-full">
                 {edit ? (
                   <>
-                    {studentData?.map((item, index) => {
+                    {getStudent?.map((item, index) => {
                       return (
                         <AfterList
                           after={true}
                           key={index}
                           id={item.id}
-                          state1={item.status1}
-                          state2={item.status2}
-                          state3={item.status3}
-                          state4={item.status4}
-                          state5={item.status5}
+                          state={item.status}
                           name={`${setStudentNum(item)} ${item.name}`}
                           onClick={() =>
                             handleAcceptListClick(item.id, item.name)
                           }
-                          time={selectClassTime}
                           class_name={item.classroom_name}
                         />
                       );
@@ -233,7 +164,7 @@ const AfterManage = () => {
               </div>
             ) : (
               <>
-                {studentData?.map((item, index) => (
+                {getStudent?.map((item, index) => (
                   <AfterDelete student={item.name} key={index} id={item.id} />
                 ))}
               </>
@@ -257,7 +188,7 @@ const AfterManage = () => {
             <Button
               colorType="ghost"
               buttonSize="full"
-              onClick={handleSaveModalConfirm}
+              onClick={handleSaveClub}
             >
               출결 저장하기
             </Button>
