@@ -63,6 +63,13 @@ const BugReport = () => {
     });
   };
 
+  const handleRemoveImage = (index: number) => {
+    setData((prevData) => ({
+      ...prevData,
+      file_name: prevData.file_name.filter((_, i) => i !== index),
+    }));
+  };
+
   return (
     <>
       <Header />
@@ -92,26 +99,65 @@ const BugReport = () => {
           </div>
           <div className="flex flex-col gap-2">
             <div className="mb-11">
-              <>
-                <p>버그 사진을 첨부해주세요</p>
-                <label
-                  htmlFor="file-input"
-                  className="cursor-pointer flex flex-col p-8 justify-center items-center w-full h-max rounded-md bg-neutral-900 text-gray-500 mb-9"
-                  onClick={() => {
-                    setModal(true);
-                  }}
-                >
-                  <img src={BugReportImg.src} alt="bug report icon" />
-                  <p>사진을 첨부해주세요</p>
-                </label>
-                <div
-                  id="file-input"
-                  className="hidden"
-                  onChange={() => {
-                    setModal(!modal);
-                  }}
-                />
-              </>
+              {data.file_name.length === 0 ? (
+                <>
+                  <p>버그 사진을 첨부해주세요</p>
+                  <label
+                    htmlFor="file-input"
+                    className="cursor-pointer flex flex-col p-8 justify-center items-center w-full h-max rounded-md bg-neutral-900 text-gray-500 mb-9"
+                    onClick={() => {
+                      setModal(true);
+                    }}
+                  >
+                    <img src={BugReportImg.src} alt="bug report icon" />
+                    <p>사진을 첨부해주세요</p>
+                  </label>
+                  <div
+                    id="file-input"
+                    className="hidden"
+                    onChange={() => {
+                      setModal(!modal);
+                    }}
+                  />
+                </>
+              ) : (
+                <div className=" flex gap-1">
+                  {data.file_name.map((item, index) => (
+                    <div
+                      key={index}
+                      className="relative w-32 h-32 overflow-hidden border border-gray-200"
+                    >
+                      <img
+                        src={`${process.env.NEXT_PUBLIC_FILE_APP}${item}`}
+                        key={index}
+                      />
+                      <button
+                        onClick={() => handleRemoveImage(index)}
+                        className="absolute top-1 right-1 text-white bg-black bg-opacity-50 rounded-full px-2 py-1"
+                      >
+                        &times;
+                      </button>
+                    </div>
+                  ))}
+                  <label
+                    htmlFor="file-input"
+                    className="cursor-pointer flex flex-col p-8 justify-center items-center w-full h-max rounded-md bg-neutral-900 text-gray-500 mb-9"
+                    onClick={() => {
+                      setModal(true);
+                    }}
+                  >
+                    <img src={BugReportImg.src} alt="bug report icon" />
+                    <p>사진을 첨부해주세요</p>
+                  </label>
+                  <div
+                    id="file-input"
+                    className="hidden"
+                    onChange={() => {
+                      setModal(!modal);
+                    }}
+                  />
+                </div>
+              )}
             </div>
           </div>
           <ImgModal
