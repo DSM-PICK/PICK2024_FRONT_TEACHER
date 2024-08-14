@@ -43,7 +43,7 @@ export interface ClubList {
 
 export interface AttendanceChack {
   user_id: string;
-  status_list: string[];
+  status: string;
 }
 
 export interface ChangeStatus {

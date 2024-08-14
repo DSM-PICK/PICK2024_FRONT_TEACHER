@@ -28,7 +28,7 @@ export const GetClubList = (club: string, period: number) => {
 
 export const FixStatus = () => {
   const { handleError } = apiError();
-  return useMutation<void, Error, { data: ChangeStatus[]; period: number }>({
+  return useMutation<void, Error, { period: number; data: ChangeStatus[] }>({
     mutationFn: async (param) => {
       try {
         await instance.patch(
