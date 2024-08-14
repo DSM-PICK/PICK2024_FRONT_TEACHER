@@ -5,7 +5,6 @@ import {
   GetClubList,
   PostStudent,
 } from "@/api/afterManage";
-import { AfterStudent, ChangeClub, ChangeStatus, ClubList } from "@/api/type";
 import BackGround from "@/components/background";
 import Button from "@/components/button";
 import Dropdown from "@/components/dropdown";
@@ -15,7 +14,7 @@ import Modal from "@/components/modal";
 import useAcceptListSelection from "@/hook/handleAcceptListClick";
 import useAttendanceStore from "@/stroes/useChangeStatus";
 import { getStudentString, setStudentNum } from "@/util/util";
-import { useActionState, useEffect, useState } from "react";
+import { useState } from "react";
 
 const AfterManage = () => {
   const [edit, setEdit] = useState<boolean>(false);
@@ -23,14 +22,12 @@ const AfterManage = () => {
   const [selectedTab, setSelectedTab] = useState<boolean>(true);
   const [selectClassTime, setSelectClassTime] = useState<number>(8);
   const [selectClub, setSelectClub] = useState<string>("대동여지도");
-  const [studentData, setStudentData] = useState<AfterStudent[]>();
   const { data: getClub } = GetClubList(selectClub, selectClassTime);
-  const [data, setData] = useState([]);
   const { mutate: Post } = PostStudent();
   const { mutate: changeStatus } = FixStatus();
   const { data: getStudent, refetch: ReGetStudent } = GetAfterStudent();
   const { handleAcceptListClick } = useAcceptListSelection();
-  const { getStatus, students } = useAttendanceStore();
+  const { students } = useAttendanceStore();
 
   const handleSaveClub = async () => {
     changeStatus(
@@ -62,15 +59,6 @@ const AfterManage = () => {
     location.reload();
     setMadal(false);
   };
-
-  useEffect(() => {
-    const keys = Object.keys(localStorage);
-    keys.forEach((key) => {
-      if (key.includes("-")) {
-        localStorage.removeItem(key);
-      }
-    });
-  }, [selectClub]);
 
   const handleClubChange = (selectedOption: string) => {
     setSelectClub(selectedOption);
