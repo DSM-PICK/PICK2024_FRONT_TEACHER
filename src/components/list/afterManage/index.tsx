@@ -1,6 +1,6 @@
 "use client";
 import StatusDrop from "@/components/dropdown/status";
-import useAttendanceStore from "@/stroes/useChangeStatus";
+import useAttendanceStore from "@/stores/useChangeStatus";
 import React, { useEffect, useState } from "react";
 
 interface NonReturnProp {

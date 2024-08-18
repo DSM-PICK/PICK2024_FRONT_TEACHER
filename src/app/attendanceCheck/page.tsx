@@ -7,7 +7,7 @@ import Dropdown from "@/components/dropdown";
 import AfterList from "@/components/list/afterManage";
 import { getStudentString } from "@/util/util";
 import { useState } from "react";
-import useAttendanceStore from "@/stroes/useChangeStatus";
+import useAttendanceStore from "@/stores/useChangeStatus";
 
 const attendanceCheck = () => {
   const [selectClassTime, setSelectClassTime] = useState<number>(8);

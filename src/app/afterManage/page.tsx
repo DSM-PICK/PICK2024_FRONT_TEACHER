@@ -12,7 +12,7 @@ import AfterList from "@/components/list/afterManage";
 import AfterDelete from "@/components/list/delete";
 import Modal from "@/components/modal";
 import useAcceptListSelection from "@/hook/handleAcceptListClick";
-import useAttendanceStore from "@/stroes/useChangeStatus";
+import useAttendanceStore from "@/stores/useChangeStatus";
 import { getStudentString, setStudentNum } from "@/util/util";
 import { useState } from "react";
 
