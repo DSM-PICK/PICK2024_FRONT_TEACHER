@@ -1,30 +1,22 @@
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { instance } from "..";
-import { AttendanceChack, ClubList } from "../type";
+import { ClubList } from "../type";
 import apiError from "@/hook/errorHandling";
 
-export const GetStudentsAttendance = () => {
+export const GetStudentsAttendance = (
+  grade: number,
+  class_num: number,
+  period: number
+) => {
   const { handleError } = apiError();
-  return useMutation<ClubList[], Error, { grade: number; class: number }>({
-    mutationFn: async (param) => {
+  return useQuery({
+    queryKey: [GetStudentsAttendance, grade, class_num, period],
+    queryFn: async () => {
       try {
-        const response = await instance.get(
-          `/attendance/grade?grade=${param.grade}&class_num=${param.class}`
+        const { data } = await instance.get<ClubList[]>(
+          `/attendance/grade?grade=${grade}&class_num=${class_num}&period=${period}`
         );
-        return response.data;
-      } catch (error) {
-        handleError(error);
-      }
-    },
-  });
-};
-
-export const AttendanceSave = () => {
-  const { handleError } = apiError();
-  return useMutation<void, Error, AttendanceChack[]>({
-    mutationFn: async (param) => {
-      try {
-        await instance.patch("/attendance/modify", param);
+        return data;
       } catch (error) {
         handleError(error);
       }

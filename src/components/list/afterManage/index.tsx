@@ -1,28 +1,19 @@
 "use client";
 import StatusDrop from "@/components/dropdown/status";
+import useAttendanceStore from "@/stores/useChangeStatus";
 import React, { useEffect, useState } from "react";
 
 interface NonReturnProp {
-  state1: string;
-  state2: string;
-  state3: string;
-  state4: string;
-  state5: string;
+  state: string;
   id: string;
   onClick?: () => void;
   after?: boolean;
   name: string;
-  time?: number;
   class_name?: string;
 }
 
 export const AfterList = ({
-  state1,
-  state2,
-  state3,
-  state4,
-  state5,
-  time,
+  state,
   id,
   onClick,
   name,
@@ -36,6 +27,8 @@ export const AfterList = ({
         return "이동";
       case "GO_OUT":
         return "외출";
+      case "GO_HOME":
+        return "귀가";
       case "DISALLOWED":
         return "무단";
       case "PICNIC":
@@ -47,61 +40,10 @@ export const AfterList = ({
     }
   };
 
-  const [statusList, setStatusList] = useState<string[]>([]);
+  const { addStudent, getStatus } = useAttendanceStore();
 
-  useEffect(() => {
-    setStatusList([state1, state2, state3, state4, state5]);
-  }, [state1, state2, state3, state4, state5]);
-
-  useEffect(() => {
-    localStorage.setItem(id, JSON.stringify(statusList));
-  }, [id, statusList]);
-
-  const handleChange = (index: number, newState: string) => {
-    const newStatusList = [...statusList];
-    for (let i = index; i < newStatusList.length; i++) {
-      newStatusList[i] = newState;
-    }
-    setStatusList(newStatusList);
-  };
-
-  const ClassCheck = (newState: string) => {
-    switch (time) {
-      case 6:
-        handleChange(0, newState);
-        break;
-      case 7:
-        handleChange(1, newState);
-        break;
-      case 8:
-        handleChange(2, newState);
-        break;
-      case 9:
-        handleChange(3, newState);
-        break;
-      case 10:
-        handleChange(4, newState);
-        break;
-      default:
-        break;
-    }
-  };
-
-  const changeProp = () => {
-    switch (time) {
-      case 6:
-        return state1;
-      case 7:
-        return state2;
-      case 8:
-        return state3;
-      case 9:
-        return state4 || "";
-      case 10:
-        return state5 || "";
-      default:
-        return "";
-    }
+  const handleChange = (newState: string) => {
+    addStudent(id, newState);
   };
 
   return (
@@ -120,7 +62,7 @@ export const AfterList = ({
               </div>
             )}
           </div>
-          <StatusDrop onChange={ClassCheck} state={Change(changeProp())} />
+          <StatusDrop onChange={handleChange} state={Change(state)} />
         </div>
       </div>
     </div>
