@@ -216,23 +216,27 @@ const OutAccept = () => {
         {selectedTab
           ? applicationData?.map((item, index) => (
               <NonReturn
-                id={item.id}
+                id={item.user_id}
                 type="accept"
                 key={index}
                 returnTime={`${item.start_time}~${item.end_time}`}
                 name={getStudentString(item)}
-                onClick={() => handleAcceptListClick(item.id, item.username)}
+                onClick={() =>
+                  handleAcceptListClick(item.user_id, item.username)
+                }
                 reason={item.reason}
               />
             ))
           : applicationData?.map((item, index) => (
               <NonReturn
-                id={item.id}
+                id={item.user_id}
                 type="accept"
                 key={index}
                 returnTime={`${item.start_time}~`}
                 name={getStudentString(item)}
-                onClick={() => handleAcceptListClick(item.id, item.username)}
+                onClick={() =>
+                  handleAcceptListClick(item.user_id, item.username)
+                }
                 reason={item.reason}
               />
             ))}

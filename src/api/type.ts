@@ -1,7 +1,8 @@
 export interface applicationOK {
-  id: string;
+  user_id: string;
   username: string;
   start_time: string;
+  id: string;
   end_time: string;
   grade: number;
   class_num: number;
@@ -52,7 +53,7 @@ export interface ChangeStatus {
 }
 
 export interface FloorClass {
-  id: string;
+  user_id: string;
   class_num: number;
   classroom_name: string;
   end_period: number;
