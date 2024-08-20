@@ -221,9 +221,7 @@ const OutAccept = () => {
                 key={index}
                 returnTime={`${item.start_time}~${item.end_time}`}
                 name={getStudentString(item)}
-                onClick={() =>
-                  handleAcceptListClick(item.user_id, item.username)
-                }
+                onClick={() => handleAcceptListClick(item.id, item.username)}
                 reason={item.reason}
               />
             ))
