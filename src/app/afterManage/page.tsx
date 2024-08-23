@@ -138,9 +138,6 @@ const AfterManage = () => {
                           id={item.id}
                           state={item.status}
                           name={`${setStudentNum(item)} ${item.name}`}
-                          onClick={() =>
-                            handleAcceptListClick(item.id, item.name)
-                          }
                           class_name={item.classroom_name}
                         />
                       );
