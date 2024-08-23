@@ -54,6 +54,7 @@ export interface ChangeStatus {
 
 export interface FloorClass {
   user_id: string;
+  id: string;
   class_num: number;
   classroom_name: string;
   end_period: number;
