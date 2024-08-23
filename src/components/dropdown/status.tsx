@@ -44,6 +44,7 @@ const AfterCheck: React.FC<AfterCheckProp> = ({ state, onChange, type }) => {
         return "border border-tertiary-300 text-tertiary-300";
       case "취업":
       case "현체":
+      case "귀가":
         return "border border-neutral-500 text-neutral-500";
       default:
         return "";
@@ -67,6 +68,8 @@ const AfterCheck: React.FC<AfterCheckProp> = ({ state, onChange, type }) => {
         return "MOVEMENT";
       case "출석":
         return "ATTENDANCE";
+      case "귀가":
+        return "GO_HOME";
       default:
         return "";
     }
@@ -78,7 +81,7 @@ const AfterCheck: React.FC<AfterCheckProp> = ({ state, onChange, type }) => {
     setIsDropdownVisible(false);
   };
 
-  return state === "현체" || state === "취업" ? (
+  return state === "현체" || state === "취업" || state === "귀가" ? (
     <div
       className={`box-border group px-4 py-1 bg-white rounded-lg text-Button-ES fle x justify-between items-center ${style()}`}
     >
@@ -111,6 +114,12 @@ const AfterCheck: React.FC<AfterCheckProp> = ({ state, onChange, type }) => {
             onClick={() => handleOptionClick("외출")}
           >
             외출
+          </div>
+          <div
+            className={`${commonStyle} text-neutral-50`}
+            onClick={() => handleOptionClick("귀가")}
+          >
+            귀가
           </div>
           <div
             className={`${commonStyle} text-error-400`}
