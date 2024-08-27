@@ -34,6 +34,7 @@ refreshInstance.interceptors.request.use(
   },
   (error: AxiosError) => Promise.reject(error)
 );
+
 instance.interceptors.response.use(
   (response) => response,
   async (error: AxiosError) => {
@@ -56,8 +57,6 @@ instance.interceptors.response.use(
             .catch(() => {
               window.location.href = "login";
             });
-          {
-          }
         } catch (refreshError) {
           return Promise.reject(refreshError);
         }
