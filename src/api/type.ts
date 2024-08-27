@@ -1,13 +1,14 @@
 export interface applicationOK {
   user_id: string;
   username: string;
-  start_time: string;
+  start: string;
   id: string;
-  end_time: string;
+  end: string;
   grade: number;
   class_num: number;
   num: number;
   reason: string;
+  start_time: string;
 }
 
 export interface earlyReturnHome {
