@@ -103,7 +103,7 @@ const OutList = () => {
                 id={item.id}
                 type="application"
                 key={index}
-                returnTime={item.end_time}
+                returnTime={item.end}
                 name={getStudentString(item)}
                 reason={item.reason}
               />
