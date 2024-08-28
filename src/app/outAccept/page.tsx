@@ -106,7 +106,7 @@ const OutAccept = () => {
 
   const No = () => {
     if (selectedStudents.length === 0) {
-      alert("외출 거절 할 학생을 선택해주세요");
+      alert("외출 거절 할 학생을 선택해주세요 ");
     } else setNomodal(true);
   };
 
