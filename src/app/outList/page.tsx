@@ -1,10 +1,5 @@
 "use client";
-import {
-  Application,
-  EarlyReturn,
-  OutFloorList,
-  ReturnSchool,
-} from "@/api/outList";
+import { EarlyReturn, OutFloorList, ReturnSchool } from "@/api/outList";
 import { applicationOK } from "@/api/type";
 import BackGround from "@/components/background";
 import Button from "@/components/button";
