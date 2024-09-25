@@ -132,7 +132,7 @@ const ClassChange = () => {
           <ChangeClass
             type="accept"
             key={index}
-            onClick={() => handleAcceptListClick(item.id, item.user_name)}
+            onClick={() => handleAcceptListClick(item.user_id, item.user_name)}
             prevClass={item.move}
             nextClass={`${item.classroom_name}`}
             student={getStudentString(item)}
