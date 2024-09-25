@@ -93,7 +93,7 @@ const OutList = () => {
             {data?.map((item, index) => (
               <NonReturn
                 onClick={() => {
-                  handleAcceptListClick(item.id, item.username);
+                  handleAcceptListClick(item.id, item.user_name);
                 }}
                 id={item.id}
                 type="application"

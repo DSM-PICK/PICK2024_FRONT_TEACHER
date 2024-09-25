@@ -127,7 +127,7 @@ const OutAccept = () => {
           {
             type: reqOption,
             status: "NO",
-            ids: selectedStudents,
+            id_list: selectedStudents,
           },
           {
             onSuccess: () => {
@@ -155,7 +155,7 @@ const OutAccept = () => {
           {
             type: reqOption,
             status: "OK",
-            ids: selectedStudents,
+            id_list: selectedStudents,
           },
           {
             onSuccess: () => {
@@ -221,7 +221,7 @@ const OutAccept = () => {
                 key={index}
                 returnTime={`${item.start}~${item.end}`}
                 name={getStudentString(item)}
-                onClick={() => handleAcceptListClick(item.id, item.username)}
+                onClick={() => handleAcceptListClick(item.id, item.user_name)}
                 reason={item.reason}
               />
             ))
@@ -232,7 +232,7 @@ const OutAccept = () => {
                 key={index}
                 returnTime={`${item.start}~ `}
                 name={getStudentString(item)}
-                onClick={() => handleAcceptListClick(item.id, item.username)}
+                onClick={() => handleAcceptListClick(item.id, item.user_name)}
                 reason={item.reason}
               />
             ))}
