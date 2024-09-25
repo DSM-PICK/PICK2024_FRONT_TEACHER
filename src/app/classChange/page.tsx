@@ -2,19 +2,17 @@
 import { getFullToday } from "@/util/date";
 import BackGround from "@/components/background";
 import Dropdown from "@/components/dropdown";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import Button from "@/components/button";
 import { useRouter } from "next/navigation";
 import { getStudentString } from "@/util/util";
 import Modal from "@/components/modal";
 import { AcceptClass, AcceptClassChange } from "@/api/classChange";
-import { FloorClass } from "@/api/type";
 import ChangeClass from "@/components/classChange";
 import useAcceptListSelection from "@/hook/handleAcceptListClick";
 
 const ClassChange = () => {
   const [selectedFloor, setSelectedFloor] = useState<number>(5);
-  const [data, setData] = useState<FloorClass[]>([]);
   const [accept, setAccept] = useState<boolean>(false);
   const [refuse, setRefuse] = useState<boolean>(false);
   const { selectedStudents, selectedStudentName, handleAcceptListClick } =
@@ -41,16 +39,7 @@ const ClassChange = () => {
     }
   };
 
-  useEffect(() => {
-    if (AccpetMutate) {
-      setData(AccpetMutate);
-    }
-  }, [AccpetMutate]);
-
-  const nav = useRouter();
-
   const handleFloorChange = (selectedOption: number) => {
-    setData([]);
     setSelectedFloor(selectedOption);
   };
 
@@ -139,11 +128,11 @@ const ClassChange = () => {
       }
     >
       <div className=" flex flex-col h-60dvh overflow-y-scroll gap-4">
-        {data?.map((item, index) => (
+        {AccpetMutate?.map((item, index) => (
           <ChangeClass
             type="accept"
             key={index}
-            onClick={() => handleAcceptListClick(item.user_id, item.username)}
+            onClick={() => handleAcceptListClick(item.id, item.user_name)}
             prevClass={item.move}
             nextClass={`${item.classroom_name}`}
             student={getStudentString(item)}
