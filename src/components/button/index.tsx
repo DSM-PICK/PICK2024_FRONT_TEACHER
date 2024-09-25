@@ -33,7 +33,8 @@ const Button: React.FC<ButtonProp> = ({
 }) => {
   const getColorClass = () => {
     switch (colorType) {
-      case "primary" || "secondary":
+      case "primary":
+      case "secondary":
         return ` rounded-lg bg-primary-200 text-primary-1000 focus:bg-primary-500 focus:border focus:border-primary-800 active:bg-${colorType}-800`;
 
       case "tertiary":
@@ -47,7 +48,6 @@ const Button: React.FC<ButtonProp> = ({
 
       case "ghostDisabled":
         return " rounded-lg border border-neutral-500 text-neutral-500 bg-neutral-1000";
-
       case "red":
         return " rounded-lg text-error-1000 bg-error-200 focus:bg-error-400 focus:border focus:border-error-800 active:bg-error-700";
     }
