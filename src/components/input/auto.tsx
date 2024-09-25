@@ -57,7 +57,9 @@ const AutoInput: React.FC<AutoInputProps> = ({
   }, [GetStudentMutate]);
 
   useEffect(() => {
-    const students = data?.map((item) => `${setStudentNum(item)} ${item.name}`);
+    const students = data?.map(
+      (item) => `${setStudentNum(item)} ${item.user_name}`
+    );
     setStudent(students);
   }, [data]);
 

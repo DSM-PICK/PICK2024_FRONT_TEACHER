@@ -65,7 +65,7 @@ export const OutAcceptApi = () => {
         const response = await instance.patch(`${param.type}/status`, {
           type: param.type,
           status: param.status,
-          ids: param.ids,
+          id_list: param.id_list,
         });
         return response.data;
       } catch (error) {

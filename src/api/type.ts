@@ -1,6 +1,6 @@
 export interface applicationOK {
   user_id: string;
-  username: string;
+  user_name: string;
   start: string;
   id: string;
   end: string;
@@ -13,7 +13,7 @@ export interface applicationOK {
 
 export interface earlyReturnHome {
   id: string;
-  username: string;
+  user_name: string;
   start_time: string;
   grade: number;
   class_num: number;
@@ -24,7 +24,7 @@ export interface earlyReturnHome {
 export interface Accept {
   type: string;
   status: "OK" | "NO";
-  ids: string[];
+  id_list: string[];
 }
 
 export interface ClassProp {
@@ -35,7 +35,7 @@ export interface ClassProp {
 
 export interface ClubList {
   id: string;
-  username: string;
+  user_name: string;
   grade: number;
   class_num: number;
   num: number;
@@ -63,7 +63,7 @@ export interface FloorClass {
   move: string;
   num: number;
   start_period: number;
-  username: string;
+  user_name: string;
 }
 
 export interface CountOutListType {
@@ -76,14 +76,14 @@ export interface Type {
   grade: number;
   class_num: number;
   num: number;
-  name: string;
+  user_name: string;
 }
 export interface AfterStudent {
   id: string;
   grade: number;
   class_num: number;
   num: number;
-  name: string;
+  user_name: string;
   classroom_name: string;
   status: string;
 }
@@ -102,5 +102,5 @@ export interface changeClass {
   num: number;
   move: string;
   user_id: string;
-  username: string;
+  user_name: string;
 }

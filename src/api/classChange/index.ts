@@ -27,7 +27,7 @@ export const AcceptClass = () => {
       try {
         await instance.patch(`/class-room/status`, {
           status: param.status,
-          ids: param.id,
+          id_list: param.id,
         });
       } catch (error) {
         handleError(error);

@@ -137,7 +137,7 @@ const AfterManage = () => {
                           key={index}
                           id={item.id}
                           state={item.status}
-                          name={`${setStudentNum(item)} ${item.name}`}
+                          name={`${setStudentNum(item)} ${item.user_name}`}
                           class_name={item.classroom_name}
                         />
                       );
@@ -150,7 +150,7 @@ const AfterManage = () => {
             ) : (
               <>
                 {getStudent?.map((item, index) => (
-                  <AfterDelete student={item.name} key={index} id={item.id} />
+                  <AfterDelete student={item.user_name} key={index} id={item.id} />
                 ))}
               </>
             )}
